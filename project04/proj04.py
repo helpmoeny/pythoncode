@@ -43,13 +43,17 @@ for one_line in fi:
         name= get_name(one_line)
         balance = float(get_balance(one_line))
     while True:
+        print("Current Customer Information")
+        print("Account ",account_nr)
+        print("Balance $", balance)
+        print("Name ", name)
         trans=input("Enter a command (a,c,d,w): ")#Prompt for transaction
         if trans == "d":
             deposit_in=input("Deposit amount: ")#prompt for deposit amount
             try:
                 deposit=float(deposit_in)
                 if deposit < 0:
-                    print("Do not input negative numbers, try again...")
+                    print("Do not input negative numbers try again...")
                 else:
                     break
                 if deposit+balance > 9999999.99:#check input for errors
@@ -63,7 +67,7 @@ for one_line in fi:
             try:
                 withdrawl=float(withdrawal_in)
                 if withdrawl < 0:
-                    print("Do not input negative numbers, try again...")
+                    print("Do not input negative numbers try again...")
                 else:
                     break
                 if withdrawl > balance:#check input for errors

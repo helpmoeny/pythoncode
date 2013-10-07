@@ -1,7 +1,6 @@
 from math import exp, expm1
 import os
 #define variables:
-#yet another comment
 #define functions:
 def get_number(one_line):
     return one_line[:6]
@@ -52,6 +51,10 @@ for one_line in fi:
             deposit_in=input("Deposit amount: ")#prompt for deposit amount
             try:
                 deposit=float(deposit_in)
+                if deposit < 0:
+                    print("Do not input negative numbers try again...")
+                else:
+                    break
                 if deposit+balance > 9999999.99:#check input for errors
                     print("Can't Deposit that much...")
                 else:
@@ -62,6 +65,10 @@ for one_line in fi:
             withdrawal_in=input("Withdrawal amount: ")#prompt for withdrawl amount
             try:
                 withdrawl=float(withdrawal_in)
+                if withdrawl < 0:
+                    print("Do not input negative numbers try again...")
+                else:
+                    break
                 if withdrawl > balance:#check input for errors
                     print("Can't withdraw that much...")
                 else:
