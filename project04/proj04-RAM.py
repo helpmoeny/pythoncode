@@ -1,7 +1,7 @@
 from math import exp, expm1
 import os
 #define variables:
-#another comment
+#yet another comment
 #define functions:
 def get_number(one_line):
     return one_line[:6]
