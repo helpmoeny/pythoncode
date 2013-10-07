@@ -53,25 +53,31 @@ for one_line in fi:
             try:
                 deposit=float(deposit_in)
                 if deposit < 0:
-                    print("Do not input negative numbers try again...")
+                    print("******Do not input negative numbers try again...******")
+                    print("")
                 elif deposit+balance > 9999999.99:#check input for errors
-                    print("Can't Deposit that much...")
+                    print("******Can't Deposit that much******")
+                    print("")
                 else:
                     balance = balance + deposit
             except ValueError:
-                print("Incorrect input, try again...")
+                print("******Incorrect input, try again******")
+                print("")
         elif trans == "w":
             withdrawl_in=input("Withdrawl amount: ")#prompt for withdrawl amount
             try:
                 withdrawl=float(withdrawl_in)
                 if withdrawl < 0:
-                    print("Do not input negative numbers try again...")
+                    print("******Do not input negative numbers try again...******")
+                    print("")
                 elif withdrawl > balance: #check input for errors
-                    print("Can't withdraw that much...")
+                    print("******Can't withdraw that much******")
+                    print("")
                 else:
                     balance = balance - withdrawl
             except ValueError:
-                print("Incorrect input, try again...")
+                print("******Incorrect input, try again******")
+                print("")
         elif trans == "a":
             out_line=account_nr+" "+ str("{0:.2f}".format(balance)).rjust(10)+ " "+name
             fo.write(out_line)
@@ -81,9 +87,11 @@ for one_line in fi:
             if equal_floats(0,balance)==True:
                 break
             else:
-                print("Account not closed because money is still in it.")#display invalid transaction error
+                print("******Account not closed because money is still in it******")#display invalid transaction error
+                print("")
         else:
-            print("Invalid input try again...")
+            print("******Invalid input try again******")
+            print("")
     print(account_nr, balance, name)
 fo.write("999999")
 fo.close()
