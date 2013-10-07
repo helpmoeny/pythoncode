@@ -61,9 +61,9 @@ for one_line in fi:
             except ValueError:
                 print("Incorrect input, try again...")
         elif trans == "w":
-            withdrawl_in=input("Withdrawal amount: ")#prompt for withdrawl amount
+            withdrawl_in=input("Withdrawl amount: ")#prompt for withdrawl amount
             try:
-                withdrawl=float(withdrawal_in)
+                withdrawl=float(withdrawl_in)
                 if withdrawl < 0:
                     print("Do not input negative numbers try again...")
                 elif withdrawl > balance: #check input for errors
