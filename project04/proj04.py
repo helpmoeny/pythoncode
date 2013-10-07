@@ -85,6 +85,8 @@ for one_line in fi:
             break
         elif trans == "c":
             if equal_floats(0,balance)==True:
+                print("******Account closed, moving on...******")#display invalid transaction error
+                print("")
                 break
             else:
                 print("******Account not closed because money is still in it******")#display invalid transaction error
@@ -92,6 +94,5 @@ for one_line in fi:
         else:
             print("******Invalid input try again******")
             print("")
-    print(account_nr, balance, name)
 fo.write("999999")
 fo.close()
