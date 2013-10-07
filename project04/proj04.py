@@ -54,23 +54,19 @@ for one_line in fi:
                 deposit=float(deposit_in)
                 if deposit < 0:
                     print("Do not input negative numbers try again...")
-                else:
-                    break
-                if deposit+balance > 9999999.99:#check input for errors
+                elif deposit+balance > 9999999.99:#check input for errors
                     print("Can't Deposit that much...")
                 else:
                     balance = balance + deposit
             except ValueError:
                 print("Incorrect input, try again...")
         elif trans == "w":
-            withdrawal_in=input("Withdrawal amount: ")#prompt for withdrawl amount
+            withdrawl_in=input("Withdrawal amount: ")#prompt for withdrawl amount
             try:
                 withdrawl=float(withdrawal_in)
                 if withdrawl < 0:
                     print("Do not input negative numbers try again...")
-                else:
-                    break
-                if withdrawl > balance:#check input for errors
+                elif withdrawl > balance: #check input for errors
                     print("Can't withdraw that much...")
                 else:
                     balance = balance - withdrawl
