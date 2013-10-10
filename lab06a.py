@@ -1,10 +1,10 @@
 def make_new_row(old_row):
     new_row=[1]
     pos=1
-    if old_row==[]:
-        print("[1]")
-    elif old_row==[1]:
-        print("[1,1]")
+    if old_row==[]:#checked for an empty list,return a 1 to which we print
+        return [1]
+    elif old_row==[1]:#checked for a list containing 1,return a 1,1 to which we print
+        return [1,1]
     else:
         while True:
             new_row.insert(pos,old_row[pos-1]+old_row[pos])
