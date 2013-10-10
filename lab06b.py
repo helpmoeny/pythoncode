@@ -7,7 +7,7 @@ def make_new_row(old_row):
         return [1,1]
     else:
         while True:
-            new_row.insert(pos,old_row[pos-1]+old_row[pos])
+            new_row.append(old_row[pos-1]+old_row[pos])
             if old_row[pos]==1:
                 new_row.append(1)
                 break
