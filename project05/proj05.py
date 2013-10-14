@@ -1,6 +1,6 @@
 def get_crater_tuple(line_str):
     line_list=[]
-    for item in line_str.split():
+    for item in line_str.split('\t'):
         line_list.append(item)
         #print(line_list)
     t=(line_list[0],line_list[1],line_list[2],line_list[3],line_list[4])
