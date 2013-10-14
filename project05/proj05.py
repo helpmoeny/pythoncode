@@ -1,4 +1,5 @@
 def get_crater_tuple(line_str):
+    """Build crater tuple from one line."""
     line_list=[]
     for item in line_str.split('\t'):
         line_list.append(item)
@@ -7,6 +8,7 @@ def get_crater_tuple(line_str):
     return(t)
 
 def read_craters(filename):
+    """Opens file and read's through it, and looks for IOError's"""
     while True:
         try:
             fp=open(filename)
@@ -22,6 +24,7 @@ def read_craters(filename):
     return line_list[3:]
 
 def get_eligible_craters(crater_list):
+    """Goes through each tuple position and checks if they fit the paramaters, then adds them to list"""
     checker=True
     eligible_crater_list=[]
     for crater_tuple in crater_list:
@@ -41,11 +44,20 @@ def get_eligible_craters(crater_list):
     return eligible_crater_list;
 
 def write_craters(eligible_crater_list):
-    fo=open("craters.txt","w")
-    fo.write(" ID       Name       Latitude Longitude  Diameter\n")
-    for item in eligible_crater_list:
-        fo.write(item[0].rjust(3)+" "+item[1].ljust(15)+" "+"{0:.2f}".format(float(item[2])).rjust(9)+" "+"{0:.2f}".format(float(item[3])).rjust(9)+" "+"{0:.2f}".format(float(item[4])).rjust(9)+"\n")
-    fo.close()
+    """Creates craters.txt and outputs the items from eligible_crater_list"""
+    try:
+        fo=open("craters.txt","w")
+        fo.write("ID".rjust(3)+" "+\
+                 "Name".center(15)+" "+\
+                 "Latitude".rjust(9)+" "+\
+                 "Longitude".rjust(9)+" "+\
+                 "Diameter".rjust(9)+"\n")
+        for item in eligible_crater_list:
+            fo.write(item[0].rjust(3)+" "+item[1].ljust(15)+" "+"{0:.2f}".format(float(item[2])).rjust(9)+" "+"{0:.2f}".format(float(item[3])).rjust(9)+" "+"{0:.2f}".format(float(item[4])).rjust(9)+"\n")
+        fo.close()
+    except PermissionError:
+        print("Cannot open output file")
+        print("Exiting Program")
 
 
 filename = input("Enter a filename: ")
