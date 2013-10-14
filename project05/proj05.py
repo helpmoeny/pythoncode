@@ -41,7 +41,7 @@ def get_eligible_craters(crater_list):
 def write_craters(eligible_crater_list):
     fo=open("craters.txt","w")
     for item in eligible_crater_list:
-        fo.write(str(item)+"\n")
+        fo.write(item[0].rjust(3)+" "+item[1].ljust(15)+" "+"{0:.2f}".format(float(item[2])).rjust(9)+" "+"{0:.2f}".format(float(item[3])).rjust(9)+" "+"{0:.2f}".format(float(item[4])).rjust(9)+"\n")
     fo.close()
 
 
