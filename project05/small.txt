@@ -1,0 +1,28 @@
+reference number	Name	lat	lon	diameter	confidence	elevation of surrounding terrain	crater density per 1x10^6km^2, 1000 km counting radius, using 1's and 2's	dn inside crater	dn outside crater	dn difference between inside and outside	continuous ejecta radius	flow length	dark halo diameter	ejecta completeness (radial)	rim completeness	planform	morphologic class	central structure diam	wall terracing	wall width	multiple crater	floor reflectivity	Parabolic feature	direction impactor travelling	multiple asteroids	terrain	interior flat floor	exterior embayment	tectonically deformed	degradation state	comments
+				(km)	1-3, 1 is certain	(km)					max from rim (km)	distance from rim (km)	(km)	0-1 1 is complete	0-1 1 is complete	(c)ircular,(e)longate,(p)olygonal,(i)rregular	(1)bowl(2)knobby base(3)central pk(4)several pks(5)pk rings(6)multi-ring(0)flat flr	(km)	(t)erraced,(u)nterraced	(km)	(s)ingle crater, (m)ultiple floor, or crater (f)ield	(d)ark,(i)ntermediate,(b)right	(y)es, (n)o, or maybe	direction on a 16 point compass	group #	(p)lains,Lakshmi planum(lp),(t)essera and mountain belts,(c)oronae,(v)olcano,(r)idge belt,(ri)ft	(y)es,(n)o,(m)aybe	(y)es,(n)o,(m)aybe	(y)es,(n)o,(m)aybe	(1)pristine w/ejecta (2)no ejecta (3)highly degraded
+#	Name	Lat	Lon	D	Co	Ev	Rho	dni	dno	dnd	Ce	Fl	Dh	Ec	Rc	Pl	Mo	Cd	Wa	Ww	Mu	Fr	Pf	Pd	Ma	Te	If	Ee	T	De	comments
+1	Mead	12.5	57	268.7	1	6052.2	1.90986	109	90	19	110.2	x	510	0.7	1	c	6	193.6	t	x	s	i	n	x		p	y	n	n	1	impact melt appears to fill inner basin and cover some ejecta; inner wall of rim and ring steepest; area inside inner ring is lighter; fractures in center
+2	Isabella	-29.9	204.2	176	1	6051.74	1.90986	93	81	12	162	403.2	x	1	1	c	6	141.1	t	x	s	d	n	x	10	p	y	n	n	1	radial and concentric fractures in center
+3	Meitner	-55.6	321.6	150.7	1	6051.38	0.95493	107	92	15	64.9	x	350	1	1	c	6	114.2	t	6.1	s	i	n	x		p	y	n	n	1
+4	Klenova	78.2	104.7	141.9	1	6051.15	3.1831	97	82	15	78.7	x	x	0.9	1	c	6	100.1	t	6.3	s	d	n	x		pf	y	n	n	1	radial fractures in center of floor
+5	Stanton	-23.2	199.3	107	1	6052.04	2.86479	127	95	32	96.3	148.3	370	1	1	c	6	77.6	t	x	s	b	n	x	7	p	y	n	n	1
+7	Cleopatra	65.9	7	105	1	6058.63	1.27324	114	166	-52	x	x	x	0.2	1	c	5	60	u	10	s	d	n	x		t	y	n	n	2
+6	Baker	62.5	40.4	105	1	6053.8	1.59155	97	99	-2	43	x	x	0.3	0.8	c	6	59.6	t	6.2	s	i	n	x		t	y	m	y	2
+8	Rosa Bonheur	9.7	288.8	102.2	1	6052	2.54648	124	112	12	54.8	137.6	x	1	1	c	5	59.7	t	x	s	i	n	x		pf	y	n	y	1	floor of inner ring darker than outer
+9	Joliot-Curie	-1.7	62.4	100.9	1	6052.48	1.90986	85	69	16	76.3	x	x	1	1	c	6	57.9	t	5.6	s	d	n	x		t	y	n	n	1	not all orbits
+10	Cochran	51.9	143.4	98.1	1	6051.77	3.1831	100	85	15	76.4	270	x	0.8	1	c	5	53	t	7.6	s	d	n	w		p	y	n	n	1	flows go around tesserae (postdate)
+11	Maria Celeste	23.4	140.4	96.6	1	6051.38	2.86479	69	66	3	65.3	167.3	x	0.8	1	c	5	61.7	t	2.1	s	d	n	nw		p	y	m	n	1
+12	Sayers	-67.5	229.6	93.6	1	6050.95	3.81972	93	94	-1	87.6	136.8	x	0.8	1	c	5	48	t	4.4	s	d	n	ene		p	y	n	n	1
+13	Greenaway	22.9	145.1	92.3	1	6051.28	2.54648	136	85	51	61.1	128.8	x	1	1	c	5	50	t	9.6	s	b	n	x		pf	y	n	n	1
+14	Potanina	31.7	53	89.6	1	6052.05	1.90986	74	72	2	63.2		300	1	1	c	6	54	t	2.8	s	d	n	x		p	y	n	n	1	secondary or 2nd impact 2 km diam. 26 km SSW,flows extend off digital coverage
+15	Bonnevie	-36.1	127	87.6	1	6052.42	0.95493	93	114	-21	63.6	x	270	0.6	1	c	4	28	t	7.6	s	d	n	x		pf	y	y	n	1
+16	Addams	-56.2	98.8	87.1	1	6051.47	2.86479	109	100	9	68	514.8	x	0.7	1	c	5		t	9.5	s	d	n	se		p	y	n	n	1	not all orbits
+17	Graham	-6.2	6	84.1	1	6051.11	2.86479	112	93	19	105.1	242	x	0.7	1	i	2	x	t	2.9	s	i	n	sse		pf	y	n	n	1	highly oblique impact
+18	Sanger	33.8	288.6	83.8	1	6053.03	4.45634	85	103	-18	70.2	293	x	0.8	1	c	5	51.3	t	7	s	d	n	ne	3	p	y	n	n	1
+19	Mona Lisa	25.6	25.2	82.5	1	6051.41	2.22817	81	85	-4	48.1	101	450	1	1	c	6	65.7	t	5	s	d	n	x		p	y	n	n	1	radial fracs in center surrounded by concentric fractures
+20	Stowe	-43.2	233.2	75.3	1	6051.02	2.54648	144	86	58	51.7	148	x	1	1	c	4	16.6	t	7.2	s	b	y	x		p	y	n	n	1	windstreaks to west
+21	Boulanger	-26.6	99.3	73.7	1	6052.76	1.90986	151	77	74	61.8	x	x	0.8	1	c	5	33.5	t	8.2	s	b	m	w		t	y	n	n	1
+22	Barsova	61.4	223	73	1	6051.47	1.90986	97	102	-5	62.8	x	x			c	5	39.6	t		s	d	n	x		r	y	n	n	1	not all orbits
+23	Wheatley	16.6	268	72.9	1	6051.95	1.59155	99	92	7	53.6	x	x	1	1	c	5	40.5	t	5.4	s	d	n	x		p	y	n	n	1
+24	Koidula	64.3	139.6	72.5	1	6051.74	2.86479	103	82	21	78.6	x	x	0.8	1	c	4	15.1	t	7.1	s	i	n	nw		p	y	n	n	1
+25	O'Keeffe	24.5	228.8	72.4	1	6051.65	1.59155	108	109	-1	68.3	166.8	x	1	1	c	0	x	t	9.6	s	i	n	x		p	y	y	n	1
