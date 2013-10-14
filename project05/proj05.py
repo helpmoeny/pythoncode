@@ -7,16 +7,18 @@ def get_crater_tuple(line_str):
     return(t)
 
 def read_craters(filename):
-    try:
-        fp=open(filename)
-        line_list=[]
-        for line in open(filename,'r').readlines():
-            line_list.append(get_crater_tuple(line))
-    except IOError:
-        fp=open(input("Enter a filename: "))
-        line_list=[]
-        for line in open(filename,'r').readlines():
-            line_list.append(get_crater_tuple(line))
+    while True:
+        try:
+            fp=open(filename)
+            line_list=[]
+            for line in open(filename,'r').readlines():
+                line_list.append(get_crater_tuple(line))
+            break
+        except IOError:
+            print("cannot open that file")
+            print()
+            filename=input("Enter a filename: ")
+    fp.close()
     return line_list[3:]
 
 def get_eligible_craters(crater_list):
@@ -40,6 +42,7 @@ def get_eligible_craters(crater_list):
 
 def write_craters(eligible_crater_list):
     fo=open("craters.txt","w")
+    fo.write(" ID       Name       Latitude Longitude  Diameter\n")
     for item in eligible_crater_list:
         fo.write(item[0].rjust(3)+" "+item[1].ljust(15)+" "+"{0:.2f}".format(float(item[2])).rjust(9)+" "+"{0:.2f}".format(float(item[3])).rjust(9)+" "+"{0:.2f}".format(float(item[4])).rjust(9)+"\n")
     fo.close()
