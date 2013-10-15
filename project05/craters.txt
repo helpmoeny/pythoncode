@@ -4,3 +4,5 @@
  14 Potanina            31.70     53.00     89.60
  15 Bonnevie           -36.10    127.00     87.60
  21 Boulanger          -26.60     99.30     73.70
+ 28 Andreianova         -3.00     68.70     69.50
+ 38 Hepworth             5.10     94.60     62.50
