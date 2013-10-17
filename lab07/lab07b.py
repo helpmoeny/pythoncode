@@ -7,7 +7,7 @@ def init(n):
     '''Return a list of size n; each element "unmarked".'''
     init_list=[]
     for i in range(n):
-        init_list.append(i)
+        init_list.append(0)
     return init_list
 
 def sieve(L):
