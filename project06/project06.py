@@ -24,20 +24,26 @@ def get_books():
         print ("File not found.  Try again...")
     return all_list
 
-def print_book(library):
-    print('{}, {}, {}, {}'.format(book[0], book[1], book[2], book[3])
+def print_book(book):
+    print('{}, by {} {}'.format(book[0], book[1], book[3]))
 
 def display_books_by_year(library):
-    begin_str=input("Enter beginning year: ")
-    begin=int(begin_str)
-    end_str=input("Enter ending year: ")
-    end=int(end_str)
+    while True:
+        try:
+            begin_str=input("Enter beginning year: ")
+            begin=int(begin_str)
+            end_str=input("Enter ending year: ")
+            end=int(end_str)
+            break
+        except:
+            print("Invalid input")
     for book in library:
         year_str=book[3]
         year_str2=year_str[-4:]
         year=int(year_str2)
         if year<=end and year>=begin:
             print_book(book)
+        
 
 def display_books_by_month_year(library):
     month=input("Enter month (as a number, 1-12): ")
