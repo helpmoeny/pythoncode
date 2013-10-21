@@ -12,14 +12,9 @@ def get_books():
     try:
         fp=open('bestsellers.txt')
         all_list=[]
-        count=0
         for line in fp:
             book=line.split('\t')
             all_list.append(book)
-            if count>10:
-                print(all_list)
-                break
-            count+=1
         fp.close()
     except ValueError:
         print ("Oops!  That was no valid number.  Try again...")
@@ -29,11 +24,8 @@ def get_books():
         print ("File not found.  Try again...")
     return all_list
 
-def get_month(all_list):
-    month=input("Enter month (as a number, 1-12): ")
-    for year in all_list:
-        if t in year[:1]:
-            print(year)
+def print_book(library):
+    print('{}, {}, {}, {}'.format(book[0], book[1], book[2], book[3])
 
 def display_books_by_year(library):
     begin_str=input("Enter beginning year: ")
@@ -42,28 +34,33 @@ def display_books_by_year(library):
     end=int(end_str)
     for book in library:
         year_str=book[3]
-        year_str2=year_str[:4]
+        year_str2=year_str[-4:]
         year=int(year_str2)
-        if year>=end and year<=begin:
-            print(book)
+        if year<=end and year>=begin:
+            print_book(book)
 
 def display_books_by_month_year(library):
-    t=input("Enter a title (or part of a title): ")
+    month=input("Enter month (as a number, 1-12): ")
+    t=input("Enter year: ")
     for book in library:
-        if t in book[0]:
-            print(book)
+        date_str=book[3]
+        date=date_str.split('/')
+        month_int=int(date[1])
+        year=int(date[2])
+        if year==int(t) and int(month)==month_int:
+            print_book(book)
 
 def search_by_author(library):
     t=input("Enter a author's name (or part of a name): ")
     for book in library:
         if t in book[1]:
-            print(book)
+            print_book(book)
 
 def search_by_title(library):
     t=input("Enter a title (or part of a title): ")
     for book in library:
         if t in book[0]:
-            print(book)
+            print_book(book)
 
 while True:
     library=get_books() #Made the library from the list returned by get_books
