@@ -1,4 +1,4 @@
-def prompt_user():#Get user selection and return
+def prompt_user(): #Get user selection and return
     print("")
     print("What would you like to do?")
     print("1: Look up year range")
@@ -25,10 +25,10 @@ def get_books():# Read and process input file. return list
         print ("File not found try again...")
     return all_list
 
-def print_book(book):#print single book, formatted
+def print_book(book): #print single book, formatted
     print(' {}, by {} {}'.format(book[0].strip(), book[1].strip(), book[3].strip()))
 
-def display_books_by_year(library):
+def display_books_by_year(library):# find and display books by year
     while True:
         try:
             begin_str=input("Enter beginning year: ")#Negative years are legit
@@ -54,7 +54,7 @@ def display_books_by_year(library):
         print("Didn't find book with search")
         
 
-def display_books_by_month_year(library):
+def display_books_by_month_year(library): #Find and display books by month & year
     while True:
         month=input("Enter month (as a number, 1-12): ")
         if int(month)<1 or int(month)>12:
@@ -76,7 +76,7 @@ def display_books_by_month_year(library):
     if foundone==False:
         print("Didn't find book with search")
 
-def search_by_author(library):#Find and display books by Author
+def search_by_author(library): #Find and display books by Author
     t=input("Enter a author's name (or part of a name): ")
     foundone=False
     for book in library:
@@ -86,7 +86,7 @@ def search_by_author(library):#Find and display books by Author
     if foundone==False:
         print("Didn't find book with search")
 
-def search_by_title(library):#Find and display books by Title
+def search_by_title(library): #Finde and display books by Title
     t=input("Enter a title (or part of a title): ")
     foundone=False
     for book in library:
