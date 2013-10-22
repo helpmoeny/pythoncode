@@ -25,14 +25,14 @@ def get_books():
     return all_list
 
 def print_book(book):
-    print('{}, by {} {}'.format(book[0], book[1], book[3]))
+    print('{}, by {} {}'.format(book[0].strip(), book[1].strip(), book[3].strip()))
 
 def display_books_by_year(library):
     while True:
         try:
-            begin_str=input("Enter beginning year: ")
+            begin_str=input("Enter beginning year: ")#Negative years are legit
             begin=int(begin_str)
-            end_str=input("Enter ending year: ")
+            end_str=input("Enter ending year: ")#Negative years are legit
             end=int(end_str)
             if begin>end:
                 raise ValueError
@@ -41,7 +41,7 @@ def display_books_by_year(library):
             print("Invalid input")
     foundone=False
     for book in library:
-        year_str=book[3]
+        year_str=book[3].strip()
         year_str2=year_str[-4:]
         year=int(year_str2)
         if year<=end and year>=begin:
@@ -52,13 +52,18 @@ def display_books_by_year(library):
         
 
 def display_books_by_month_year(library):
-    month=input("Enter month (as a number, 1-12): ")
-    t=input("Enter year: ")
+    while True:
+        month=input("Enter month (as a number, 1-12): ")
+        if int(month)<1 or int(month)>12:
+            print("invalid input")
+        else:
+            break
+    t=input("Enter year: ")#Negative years are legit
     foundone=False
     for book in library:
-        date_str=book[3]
+        date_str=book[3].strip()
         date=date_str.split('/')
-        month_int=int(date[1])
+        month_int=int(date[0])
         year=int(date[2])
         if year==int(t) and int(month)==month_int:
             print_book(book)
@@ -70,7 +75,7 @@ def search_by_author(library):
     t=input("Enter a author's name (or part of a name): ")
     foundone=False
     for book in library:
-        if t in book[1]:
+        if t.upper() in book[1].upper():
             print_book(book)
             foundone=True
     if foundone==False:
@@ -80,7 +85,7 @@ def search_by_title(library):
     t=input("Enter a title (or part of a title): ")
     foundone=False
     for book in library:
-        if t in book[0]:
+        if t.upper() in book[0].upper():
             print_book(book)
             foundone=True
     if foundone==False:
