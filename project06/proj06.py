@@ -1,4 +1,5 @@
 def prompt_user():
+    print("")
     print("What would you like to do?")
     print("1: Look up year range")
     print("2: Look up month/year")
@@ -25,7 +26,7 @@ def get_books():
     return all_list
 
 def print_book(book):
-    print('{}, by {} {}'.format(book[0].strip(), book[1].strip(), book[3].strip()))
+    print(' {}, by {} {}'.format(book[0].strip(), book[1].strip(), book[3].strip()))
 
 def display_books_by_year(library):
     while True:
@@ -40,6 +41,8 @@ def display_books_by_year(library):
         except:
             print("Invalid input")
     foundone=False
+    print("")
+    print("All Titles between ",begin," and ",end)
     for book in library:
         year_str=book[3].strip()
         year_str2=year_str[-4:]
@@ -60,6 +63,8 @@ def display_books_by_month_year(library):
             break
     t=input("Enter year: ")#Negative years are legit
     foundone=False
+    print("")
+    print("All Titles in month ",month," of ",t)
     for book in library:
         date_str=book[3].strip()
         date=date_str.split('/')
