@@ -7,8 +7,8 @@ def build_word_set( input_file ):
     
     for line in input_file:
 
-        # sets variable equal to the line which has been strip of leading and trailing characters (removed)
-        # The line was also split of arbitrary strings of whitespace characters(spaces,tabs,etc.)
+        # creates list equal to the line which has been stripped of leading and trailing characters (removed)
+        # The line was also split into a list from the arbitrary strings of whitespace characters(spaces,tabs,etc.)
         word_lst = line.strip().split()
 
         # Sets variable to lowercase while also striping it of all punctuation for each w in the word_lst
