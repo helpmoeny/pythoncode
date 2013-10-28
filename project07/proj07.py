@@ -23,7 +23,12 @@ def Create_Dic(Inputfile):
 
 def print_data(county):
     #The format for printing a county! Actually prints the county it was given
-    print()
+    people_flt=float(county[0]) #print("{:16,d}".format(12345))
+    people=people_flt
+    income_flt=float(county[2])
+    income=income_flt
+    county_str='{:16,d}, {}%, ${:16,d}'.format(people, county[1], income)
+    print(county_str)
 
 def print_highest_data(dictionary):
     #Finds the county with the max percentage of childern in poverty
@@ -35,7 +40,8 @@ def print_highest_data(dictionary):
             maxvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the max value
-    return dictionary[key]
+    print(key, " County")
+    print_data(dictionary[key])
 
 def print_lowest_data(dictionary):
     #Finds the county with the min percentage of childern in poverty and returns it
@@ -47,7 +53,8 @@ def print_lowest_data(dictionary):
             minvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the min value
-    return dictionary[key]
+    print(key, " County")
+    print_data(dictionary[key])
 
 def print_county_data(dictionary):
     #Continuously prompts for a county and then searches for it, not case sensitive and does not include the actual word county in search
@@ -66,7 +73,6 @@ def print_county_data(dictionary):
             print("Not found")
     #feeds the county it found to print_data for printing
 
-# Can print_data stay in the spot it's at in the code? Since the other functions just call upon it and feed it a county to print
 
 county_dict=Create_Dic("est11_MI.txt")
 for index in sorted(county_dict):
