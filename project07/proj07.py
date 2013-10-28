@@ -23,12 +23,15 @@ def Create_Dic(Inputfile):
 
 def print_data(county):
     #The format for printing a county! Actually prints the county it was given
-    people_flt=float(county[0]) #print("{:16,d}".format(12345))
-    people=people_flt
-    income_flt=float(county[2])
-    income=income_flt
-    county_str='{:16,d}, {}%, ${:16,d}'.format(people, county[1], income)
+    people_int=int(county[0])
+    people=people_int
+    income_int=int(county[2])
+    income=income_int
+    format_str='{:>16}, {:>8}, {:>15}'.format('Ages 0-17', 'percent people ages 0-17', 'Median household income')
+    county_str='{:16,d}, {:>23}%, {:22,d}$'.format(people, county[1], income)
+    print(format_str)
     print(county_str)
+    print()
 
 def print_highest_data(dictionary):
     #Finds the county with the max percentage of childern in poverty
@@ -40,7 +43,8 @@ def print_highest_data(dictionary):
             maxvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the max value
-    print(key, " County")
+    print("County with the max percentage of childern in poverty")
+    print(key, "County-")
     print_data(dictionary[key])
 
 def print_lowest_data(dictionary):
@@ -53,7 +57,8 @@ def print_lowest_data(dictionary):
             minvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the min value
-    print(key, " County")
+    print("County with the min percentage of childern in poverty")
+    print(key, "County-")
     print_data(dictionary[key])
 
 def print_county_data(dictionary):
@@ -68,7 +73,7 @@ def print_county_data(dictionary):
                 break
             print("County: ",count_init)
             match = next(val for key, val in dictionary.items() if count_init in key.lower())
-            print(match)
+            print_data(match)
         except StopIteration:
             print("Not found")
     #feeds the county it found to print_data for printing
