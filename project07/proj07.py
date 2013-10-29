@@ -1,24 +1,27 @@
+import string
 def Create_Dic(Inputfile):
-    fp=open(Inputfile,"r")
     county={}
-    for line in fp:
-        line_list=line.split()
-        if int(line_list[1])>0:
-            countyname=line_list[23]
-            count=24
-            while True:
-                if line_list[count].upper()!= "COUNTY":
-                    countyname = countyname + " " + line_list[count]
-                    count+=1
+    try:
+        fp=open(Inputfile,"r")
+        for line in fp:
+            line_list=line.split()
+            if int(line_list[1])>0:
+                countyname=line_list[23]
+                count=24
+                while True:
+                    if line_list[count].upper()!= "COUNTY":
+                        countyname = countyname + " " + line_list[count]
+                        count+=1
+                    else:
+                        break
+                county_data=(line_list[8],line_list[11],line_list[20])
+                if countyname in county:
+                    print("Error: Duplicate County Data")
                 else:
-                    break
-            county_data=(line_list[8],line_list[11],line_list[20])
-            if countyname in county:
-                print("Error: Duplicate County Data")
-            else:
-                county[countyname]=county_data
-    #for index in county:
-        #print(index,county[index])
+                    county[countyname]=county_data
+    except IOError:
+        print("cannot open that file,quitting")
+        county=0
     return county
 
 def print_data(county):
@@ -71,18 +74,20 @@ def print_county_data(dictionary):
             if count_init == 'q':
                 print("Quiting")
                 break
-            print("County: ",count_init)
-            match = next(val for key, val in dictionary.items() if count_init in key.lower())
+            match = next(val for key, val in dictionary.items() if count_init == key.lower())
+            found_key=[k for k, v in dictionary.items() if v == match]
+            print("County: ",str(found_key).strip(string.punctuation))
             print_data(match)
+            #feeds the county it found to print_data for printing
         except StopIteration:
             print("Not found")
-    #feeds the county it found to print_data for printing
 
 
 county_dict=Create_Dic("est11_MI.txt")
-for index in sorted(county_dict):
-    print(index,county_dict[index])
-
-print_highest_data(county_dict)
-print_lowest_data(county_dict)
-print_county_data(county_dict)
+if county_dict !=0:
+    #Code for looping through complete county dictionary, for viewing
+    #for index in sorted(county_dict):
+        #print(index,county_dict[index])
+    print_highest_data(county_dict)
+    print_lowest_data(county_dict)
+    print_county_data(county_dict)
