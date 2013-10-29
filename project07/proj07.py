@@ -49,7 +49,7 @@ def print_highest_data(dictionary):
             maxvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the max value
-    print("County with the max percentage of childern in poverty")
+    print("County with the maximum percentage of childern in poverty")
     print(key, "County-")
     print_data(dictionary[key])
 
@@ -63,7 +63,7 @@ def print_lowest_data(dictionary):
             minvalue=float(county_info[1])
             key=i
     #returns the dictionary value for that specific key where it found the min value
-    print("County with the min percentage of childern in poverty")
+    print("County with the minimum percentage of childern in poverty")
     print(key, "County-")
     print_data(dictionary[key])
 
@@ -86,11 +86,11 @@ def print_county_data(dictionary):
              print("County named",count_init,"Not found")
 
 
-county_dict=Create_Dic("est11_MI.txt")
-if county_dict !=0:
-    #Code for looping through complete county dictionary, for viewing
-    #for index in sorted(county_dict):
-        #print(index,county_dict[index])
-    print_highest_data(county_dict)
-    print_lowest_data(county_dict)
-    print_county_data(county_dict)
+def main():
+    county_dict=Create_Dic("est11_MI.txt")
+    if county_dict !=0:
+        print_highest_data(county_dict)
+        print_lowest_data(county_dict)
+        print_county_data(county_dict)
+
+main()
