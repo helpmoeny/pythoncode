@@ -13,9 +13,9 @@ def play_war(h1, h2):
         elif len(h1)==0:
             print("Player 2 Wins")
             break
-        if input("Keep Going: (Q or q) to stop:") == 'q':
-            print("Concede")
-            break # break the loop manually
+        #if input("Keep Going: (Q or q) to stop:") == 'q':
+            #print("Concede")
+            #break # break the loop manually
     
 def play_one(h1, h2):
     #get the top card from h1: top1
@@ -26,11 +26,11 @@ def play_one(h1, h2):
     #get the rank of top1, if it is 1 (Ace), change to 13:  val1
     val1=topcard1.get_rank()
     if val1==1:
-        val1=13
+        val1=14
     #get the rank of top2, if it is 1 (Ace), change to 13:  val2
     val2=topcard2.get_rank()
     if val2==1:
-        val2=13
+        val2=14
     
     if val1 > val2:
         # h1 gets both cards
@@ -38,8 +38,8 @@ def play_one(h1, h2):
         h1.append(topcard2)
     elif val2 > val1:
         # h2 gets both cards
-        h2.append(topcard1)
         h2.append(topcard2)
+        h2.append(topcard1)
     else:
         #h1, h2 get their cards back
         h1.append(topcard1)
@@ -65,19 +65,11 @@ def main():
             hand2.append( the_deck.deal() )
     
     # make a short deck, only use the first 5 cards to play
-    hand1 = hand1[:5]
-    hand2 = hand2[:5]
+    #hand1 = hand1[:5]
+    #hand2 = hand2[:5]
     play_war(hand1, hand2)
 
 if __name__ == "__main__":
     main()
-
-
-#suits ignored in this game
-#aces highest ranked cards
-#cards distributed (alternatingly), until both players have 26 cards
-#The top card of each players deck goes 1v1, then both are added to the bottom of the deck(using .append)
-#If both cards have the same rank, the cards just simply go to the bottom of the deck
-#Game continues until one player has all 52 cards in his stack(Winning the match)
 
 
