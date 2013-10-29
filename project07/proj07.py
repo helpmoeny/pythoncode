@@ -30,10 +30,13 @@ def print_data(county):
     people=people_int
     income_int=int(county[2])
     income=income_int
-    format_str='{:>16}, {:>8}, {:>15}'.format('Ages 0-17', 'percent people ages 0-17', 'Median household income')
-    county_str='{:16,d}, {:>23}%, {:22,d}$'.format(people, county[1], income)
-    print(format_str)
-    print(county_str)
+    #format_str='{:>16}, {:>8}, {:>15}'.format('Ages 0-17', 'percent people ages 0-17', 'Median household income')
+    #county_str='{:16,d}, {:>23}%, ${:>22,d}'.format(people, county[1], income).rjust(10)
+    print('Children Ages 0-17 in Poverty'.ljust(45),(str(people).rjust(10)))
+    print('Percentage of people ages 0-17 in Poverty'.ljust(45),"{:>12}%".format(str(county[1]).rjust(10)))
+    print('Median household income'.ljust(45),("${:6,d}".format(income).rjust(10)))
+    #print(format_str)
+    #print(county_str)
     print()
 
 def print_highest_data(dictionary):
@@ -76,11 +79,11 @@ def print_county_data(dictionary):
                 break
             match = next(val for key, val in dictionary.items() if count_init == key.lower())
             found_key=[k for k, v in dictionary.items() if v == match]
-            print("County: ",str(found_key).strip(string.punctuation))
+            print(str(found_key).strip(string.punctuation),"County")
             print_data(match)
             #feeds the county it found to print_data for printing
         except StopIteration:
-            print("Not found")
+             print("County named",count_init,"Not found")
 
 
 county_dict=Create_Dic("est11_MI.txt")

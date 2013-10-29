@@ -1,58 +1,93 @@
-#Going to setup functions and expain my logic of the proj07
-#http://www.cse.msu.edu/~cse231/Projects/Project07/project07.pdf
-
+import string
 def Create_Dic(Inputfile):
-    #open the file, given from input(doesn't prompt)
-    fp=open(Inputfile,"r")
-    county_dict={}
-    for line in fp:
-        line_list=line.split()
-        if int(line_list[1])>0:
-            county=line_list[23]
-            count=24
-            while True:
-                if line_list[count].upper()!= "COUNTY":
-                    county = county + " " + line_list[count]
-                    count+=1
+    county={}
+    try:
+        fp=open(Inputfile,"r")
+        for line in fp:
+            line_list=line.split()
+            if int(line_list[1])>0:
+                countyname=line_list[23]
+                count=24
+                while True:
+                    if line_list[count].upper()!= "COUNTY":
+                        countyname = countyname + " " + line_list[count]
+                        count+=1
+                    else:
+                        break
+                county_data=(line_list[8],line_list[11],line_list[20])
+                if countyname in county:
+                    print("Error: Duplicate County Data")
                 else:
-                    break
-            county_data=(line_list[8],line_list[11],line_list[20])
-            if county in county_dict:
-                print("Error: Duplicate County Data for ", county, " county ignored.")
-            else:
-                county_dict[county]=county_data
-    fp.close()
-    return county_dict
+                    county[countyname]=county_data
+    except IOError:
+        print("cannot open that file,quitting")
+        county=0
+    return county
 
 def print_data(county):
     #The format for printing a county! Actually prints the county it was given
+    people_int=int(county[0])
+    people=people_int
+    income_int=int(county[2])
+    income=income_int
+    #print(name, "County")
+    print('Children Ages 0-17 in Poverty'.ljust(45),(str(people).rjust(10)))
+    print('Percentage of people ages 0-17 in Poverty'.ljust(45),"{:>10}%".format(str(county[1]).rjust(10)))
+    print('Median household income'.ljust(45),("${:6,d}".format(income).rjust(10)))    
     print()
-    
+
 def print_highest_data(dictionary):
     #Finds the county with the max percentage of childern in poverty
-    #feeds the county it found to print_data for printing
-    print()
+    maxvalue=0
+    key=""
+    for i in dictionary:
+        county_info=dictionary[i]
+        if float(county_info[1])>maxvalue:
+            maxvalue=float(county_info[1])
+            key=i
+    #returns the dictionary value for that specific key where it found the max value
+    print("County with the max percentage of childern in poverty")
+    print(key, "County")
+    print_data(dictionary[key])
+
 def print_lowest_data(dictionary):
     #Finds the county with the min percentage of childern in poverty and returns it
-    #feeds the county it found to print_data for printing
-    print()
+    minvalue=100
+    key=""
+    for i in dictionary:
+        county_info=dictionary[i]
+        if float(county_info[1])<minvalue:
+            minvalue=float(county_info[1])
+            key=i
+    #returns the dictionary value for that specific key where it found the min value
+    print("County with the min percentage of childern in poverty")
+    print(key, "County")
+    print_data(dictionary[key])
+
 def print_county_data(dictionary):
     #Continuously prompts for a county and then searches for it, not case sensitive and does not include the actual word county in search
-    #Quit loop when q or Q is entered
-    #feeds the county it found to print_data for printing
-    print()
+    while True:
+        try:
+            count_init=input("Input county name to search for: ")
+            count_init=count_init.lower()
+            #Quit loop when q or Q is entered
+            if count_init == 'q':
+                print("Quiting")
+                break
+            match = next(val for key, val in dictionary.items() if count_init == key.lower())
+            found_key=[k for k, v in dictionary.items() if v == match]
+            print("County: ",str(found_key).strip(string.punctuation))
+            print_data(match)
+            #feeds the county it found to print_data for printing
+        except StopIteration:
+            print("Not found")
 
-# Can print_data stay in the spot it's at in the code? Since the other functions just call upon it and feed it a county to print
 
 county_dict=Create_Dic("est11_MI.txt")
-for index in sorted(county_dict):
-    print(index,county_dict[index])
-
-print_highest_data(county_dict)
-print_lowest_data(county_dict)
-print_county_data(county_dict)
-
-
-# keep in mind
-#print("{:16,d}".format(12345))
-#prints:(12,345)
+if county_dict !=0:
+    #Code for looping through complete county dictionary, for viewing
+    #for index in sorted(county_dict):
+        #print(index,county_dict[index])
+    print_highest_data(county_dict)
+    print_lowest_data(county_dict)
+    print_county_data(county_dict)
