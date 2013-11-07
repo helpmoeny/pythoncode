@@ -49,6 +49,14 @@ print( E.to_mdy() )
 print( E.is_valid() )
 print()
 
+print("[Testing Area-__init__]")
+J = date.Date( 1, 1, 2013 )#testin two arguments to function that are erroneous input
+print( J )
+print( J.to_iso() )
+print( J.to_mdy() )
+print( J.is_valid() )
+print()
+
 print("[Testing Area-spaces]")
 F = date.Date()
 F.from_mdy( "October 31, 1994" )#testing with (random)spaces in function call

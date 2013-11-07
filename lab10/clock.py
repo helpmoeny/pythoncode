@@ -8,13 +8,13 @@ class Time:
 
     def __repr__(self):
         '''Format for time'''
-        print( "%d:%02d:%02d" % (self._hours, self._minutes, self._seconds))
+        time=print( "%d:%02d:%02d" % (self._hours, self._minutes, self._seconds))
+        return str(time)
 
-    def __init__(self):
-        self._hours = 12
-        self._minutes = 0
-        self._seconds = 0
-
+    def __str__(self):
+        '''Return's string with format “hh:mm:ss” which will be used to display a human-readable representation of time'''
+        return(self)
+    
     def getHours(self):
         return self._hours
 
