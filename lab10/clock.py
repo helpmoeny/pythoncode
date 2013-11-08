@@ -13,7 +13,8 @@ class Time(object):
 
     def __str__(self):
         """ Return a string (mm/dd/yyyy) to represent a Time. """
-        return "{:02d}:{:02d}:{:02d}".format(self._hours,self._minutes,self._seconds)
+        string="{:02d}:{:02d}:{:02d}".format(self._hours,self._minutes,self._seconds)
+        return string
 
     def from_str(self,time_str):
         '''Updates Time with given string parameters'''
