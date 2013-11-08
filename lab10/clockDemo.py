@@ -6,11 +6,12 @@ def main():
     print("Readable Time: ")
     print(A.__repr__())#prints human readable version of time
     print()
-    print("Watch Time: ")
-    print(A.__str__())#Prints time
+    print("Simple Time: ")
+    print(A.__str__())#Prints Simple time
     print()
     print("New Time: ")
-    A.from_str("12:12:12")#change current time AND PRINT
-    print()
+    A.from_str("12:12:12")#change current time
+    print(A)#Prints Time (which has been changed)
+    
 
 main()

@@ -22,4 +22,3 @@ class Time(object):
         self._hours = hours
         self._minutes = minutes
         self._seconds = seconds
-        print(time_str)
