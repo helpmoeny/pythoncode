@@ -1,4 +1,3 @@
-import clock
 class Time(object):
     '''Creates Time'''
     def __init__(self, hours = 24, minutes = 00, seconds = 00):
