@@ -30,25 +30,36 @@ def move_to_foundation(tableau,foundation,t_col,f_col):
     moves a card at the end of a column of tableau to a column of foundation
     This function can also be used to move a card from cell to foundation
     '''
-    valid=True
+    valid=False
 
+    t_col=int(t_col)
+    f_col=int(f_col)
     #using -1 to get the last card in the list, not pop because that removes it??
-    tableau_card=tableau[t_col[-1]]#.pop()
-    tableau_rank=tableau_card.getrank()
-    tableau_suit=tableau_card.getsuit()
+    tableau_card=tableau[t_col].pop()
+    print(tableau_card)
+    tableau_rank=tableau_card.get_rank()
+    print(tableau_rank)
+    tableau_suit=tableau_card.get_suit()
+    print(tableau_suit)
 
-    foundation_card=foundation[f_col[-1]]
-    foundation_rank=foundation_card.getrank()
-    foundation_suit=foundation_card.getsuit()
-    foundation.append(tableau_card)
-
-    if foundation_rank==tableau_rank+1: #Iterating through rank
-        if foundation_suit==tableau_suit:
-            foundation.append(tableau_card)
+    if foundation.is_empty():
+        pass
     else:
-        valid=False
+        foundation_card=foundation[f_col].pop()
+        print(foundation_card)
+        foundation_rank=foundation_card.get_rank()
+        print(foundation_rank)
+        foundation_suit=foundation_card.get_suit()
+        print(foundation_suit)
+
+        if foundation_rank==tableau_rank+1: #Iterating through rank
+            if foundation_suit.equal_suit(tableau_suit):
+                foundation[f_col].append[tableau_card]
+                valid=True
             
     return valid
+    
+    #foundation[f_col]=tableau_card
 
 
 def move_to_cell(tableau,cell,t_col,c_col):
@@ -78,7 +89,7 @@ def is_winner(foundation):
     for i in foundation:
         for j in foundation:
             total_cards+=1
-    if total_cards==52
+    if total_cards==52:
         return True
     else:
         return False
@@ -210,8 +221,8 @@ def play():
         if len(response_list) > 0:
             r = response_list[0]
             if r == 't2f':
-                t_col=r[4]#keep in mind the spaces inputted into the shell!!
-                f_col=r[5]
+                t_col=response_list[1]#keep in mind what list we are in!
+                f_col=response_list[2]
                 move_to_foundation(tableau,foundation,t_col,f_col)                          
             elif r == 't2t':
                 pass # you implement                          
