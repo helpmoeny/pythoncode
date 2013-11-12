@@ -32,35 +32,40 @@ def move_to_foundation(tableau,foundation,t_col,f_col):
     '''
     valid=False
 
-    t_col=int(t_col)
-    f_col=int(f_col)
-    #using -1 to get the last card in the list, not pop because that removes it??
-    tableau_card=tableau[t_col].pop()
-    print(tableau_card)
-    tableau_rank=tableau_card.get_rank()
-    print(tableau_rank)
-    tableau_suit=tableau_card.get_suit()
-    print(tableau_suit)
-
-    if foundation.is_empty():
-        pass
-    else:
-        foundation_card=foundation[f_col].pop()
-        print(foundation_card)
-        foundation_rank=foundation_card.get_rank()
-        print(foundation_rank)
-        foundation_suit=foundation_card.get_suit()
-        print(foundation_suit)
-
-        if foundation_rank==tableau_rank+1: #Iterating through rank
-            if foundation_suit.equal_suit(tableau_suit):
-                foundation[f_col].append[tableau_card]
-                valid=True
-            
-    return valid
+    t_col=int(t_col)-1
+    f_col=int(f_col)-1
     
-    #foundation[f_col]=tableau_card
+    if len(tableau[t_col])!=0:
+        tableau_card=tableau[t_col].pop()
+        print(tableau_card)
+        tableau_rank=tableau_card.get_rank()
+        print(tableau_rank)
+        tableau_suit=tableau_card.get_suit()
+        print(tableau_suit)
 
+        if len(foundation[f_col])==0:
+            if tableau_rank==1:
+                foundation[f_col].append(tableau_card)
+            else:
+                tableau[t_col].append(tableau_card)
+        else:
+            foundation_card=foundation[f_col][-1]
+            print(foundation_card)
+            foundation_rank=foundation_card.get_rank()
+            print(foundation_rank)
+            foundation_suit=foundation_card.get_suit()
+            print(foundation_suit)
+
+            if foundation_rank==tableau_rank-1: #Iterating through rank
+                if foundation_suit==tableau_suit:
+                    foundation[f_col].append(tableau_card)
+                    valid=True
+                else:
+                    tableau[t_col].append(tableau_card)
+            else:
+                tableau[t_col].append(tableau_card)
+    else:
+        return valid
 
 def move_to_cell(tableau,cell,t_col,c_col):
     '''
@@ -102,8 +107,45 @@ def move_in_tableau(tableau,t_col_source,t_col_dest):
     move card from one tableau column to another
     remember to check validity of move
     '''
-    pass
-        
+    valid=False
+    
+    t_col_source=int(t_col_source)-1
+    t_col_dest=int(t_col_dest)-1
+    
+    if len(tableau[t_col_source])!=0:
+        tableau_card1=tableau[t_col_source].pop()
+        print(tableau_card1)
+        tableau_rank1=tableau_card1.get_rank()
+        print(tableau_rank1)
+        tableau_suit1=tableau_card1.get_suit()
+        print(tableau_suit1)
+
+        if len(tableau[t_col_dest])==0:
+            tableau[t_col_dest].append(tableau_card1)
+        else:
+            tableau_card2=tableau[t_col_dest][-1]
+            print(tableau_card2)
+            tableau_rank2=tableau_card2.get_rank()
+            print(tableau_rank2)
+            tableau_suit2=tableau_card2.get_suit()
+            print(tableau_suit2)
+
+            black='cs'
+            red='dh'
+            if tableau_rank2==tableau_rank1+1: #Iterating through rank
+                if (tableau_suit1==1 or tableau_suit1==4) and (tableau_suit2==2 or tableau_suit2==3):
+                    tableau[t_col_dest].append(tableau_card1)
+                    valid=True
+                elif (tableau_suit1==2 or tableau_suit1==3) and (tableau_suit2==1 or tableau_suit2==4):
+                    tableau[t_col_dest].append(tableau_card1)
+                    valid=True
+                else:
+                    tableau[t_col_source].append(tableau_card1)
+            else:
+                tableau[t_col_source].append(tableau_card1)
+    else:
+        return valid
+    
 
 def print_game(foundation, tableau,cell):
     """
@@ -223,9 +265,13 @@ def play():
             if r == 't2f':
                 t_col=response_list[1]#keep in mind what list we are in!
                 f_col=response_list[2]
-                move_to_foundation(tableau,foundation,t_col,f_col)                          
+                valid=move_to_foundation(tableau,foundation,t_col,f_col)
+                if valid==False:
+                    print("illegal move")
             elif r == 't2t':
-                pass # you implement                          
+                t_col_source=response_list[1]
+                t_col_dest=response_list[2]
+                move_in_tableau(tableau,t_col_source,t_col_dest)
             elif r == 't2c':
                 pass # you implement                          
             elif r == 'c2t':
