@@ -73,7 +73,18 @@ def move_to_cell(tableau,cell,t_col,c_col):
     returns: Boolean (True if the move is valid, False otherwise)
     moves a card at the end of a column of tableau to a cell
     '''
-    pass
+    valid=False
+    t_col=int(t_col)-1
+    c_col=int(c_col)-1
+    if len(tableau[t_col])!=0:
+        tableau_card=tableau[t_col].pop()
+    if len(cell[c_col])==0:
+        cell[c_col].append(tableau_card)
+        valid=True
+    else:
+        tableau_card.append(tableau[t_col])
+    return valid
+    
 
 def move_to_tableau(tableau,foundation,t_col,f_col):
     '''
@@ -273,11 +284,19 @@ def play():
                 t_col_dest=response_list[2]
                 move_in_tableau(tableau,t_col_source,t_col_dest)
             elif r == 't2c':
-                pass # you implement                          
+                t_col=response_list[1]
+                c_col=response_list[2]
+                valid=move_to_cell(tableau,cell,t_col,c_col)
+                if valid==False:
+                    print("illegal move")
             elif r == 'c2t':
                 pass # you implement                          
             elif r == 'c2f':
-                pass # you implement                          
+                c_col=response_list[1]
+                f_col=response_list[2]
+                valid=move_to_foundation(cell,foundation,c_col,f_col)
+                if valid==False:
+                    print("illegal move")                        
             elif r == 'q':
                 break
             elif r == 'h':
