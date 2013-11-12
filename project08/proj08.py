@@ -64,8 +64,7 @@ def move_to_foundation(tableau,foundation,t_col,f_col):
                     tableau[t_col].append(tableau_card)
             else:
                 tableau[t_col].append(tableau_card)
-    else:
-        return valid
+    return valid
 
 def move_to_cell(tableau,cell,t_col,c_col):
     '''
@@ -86,15 +85,50 @@ def move_to_cell(tableau,cell,t_col,c_col):
     return valid
     
 
-def move_to_tableau(tableau,foundation,t_col,f_col):
+def move_to_tableau(tableau,cell,t_col,c_col):
     '''
     parameters: a tableau, a cell, column of tableau, a cell
     returns: Boolean (True if the move is valid, False otherwise)
     moves a card in the cell to a column of tableau
     remember to check validity of move
     '''
-    pass
-        
+    valid=False
+    
+    t_col=int(t_col)-1
+    c_col=int(c_col)-1
+    
+    if len(cell[c_col])!=0:
+        call_card=call[c_col].pop()
+        print(call_card)
+        call_card_rank=call_card.get_rank()
+        print(call_card_rank)
+        call_card_suite=call_card.get_suit()
+        print(call_card_suite)
+
+        if len(tableau[t_col])==0:
+            tableau[t_col].append(call_card)
+        else:
+            tableau_card=tableau[t_col][-1]
+            print(tableau_card)
+            tableau_rank=tableau_card.get_rank()
+            print(tableau_rank)
+            tableau_suit=tableau_card.get_suit()
+            print(tableau_suit)
+
+            if tableau_rank==call_card_rank+1: #Iterating through rank
+                if (tableau_suit==1 or tableau_suit==4) and (call_card_suite==2 or call_card_suite==3):
+                    tableau[t_col].append(call_card)
+                    valid=True
+                elif (tableau_suit==2 or tableau_suit==3) and (call_card_suite==1 or call_card_suite==4):
+                    tableau[t_col].append(call_card)
+                    valid=True
+                else:
+                    tableau[t_col].append(call_card)
+            else:
+                tableau[t_col].append(call_card)
+    else:
+        return valid
+
 
 def is_winner(foundation):
     '''
@@ -141,8 +175,6 @@ def move_in_tableau(tableau,t_col_source,t_col_dest):
             tableau_suit2=tableau_card2.get_suit()
             print(tableau_suit2)
 
-            black='cs'
-            red='dh'
             if tableau_rank2==tableau_rank1+1: #Iterating through rank
                 if (tableau_suit1==1 or tableau_suit1==4) and (tableau_suit2==2 or tableau_suit2==3):
                     tableau[t_col_dest].append(tableau_card1)
@@ -276,25 +308,46 @@ def play():
             if r == 't2f':
                 t_col=response_list[1]#keep in mind what list we are in!
                 f_col=response_list[2]
-                valid=move_to_foundation(tableau,foundation,t_col,f_col)
+                if t_col<1 or t_col>8 or f_col<1 or f_col>4:
+                    valid=False
+                else:
+                    valid=move_to_foundation(tableau,foundation,t_col,f_col)
                 if valid==False:
                     print("illegal move")
             elif r == 't2t':
                 t_col_source=response_list[1]
                 t_col_dest=response_list[2]
-                move_in_tableau(tableau,t_col_source,t_col_dest)
+                if t_col_source<1 or t_col_source>8 or t_col_dest<1 or t_col_dest>8:
+                    valid=False
+                else:
+                    move_in_tableau(tableau,t_col_source,t_col_dest)
+                if valid==False:
+                    print("illegal move")
             elif r == 't2c':
                 t_col=response_list[1]
                 c_col=response_list[2]
-                valid=move_to_cell(tableau,cell,t_col,c_col)
+                if t_col<1 or t_col>8 or c_col<1 or c_col>4:
+                    valid=False
+                else:
+                    valid=move_to_cell(tableau,cell,t_col,c_col)
                 if valid==False:
                     print("illegal move")
             elif r == 'c2t':
-                pass # you implement                          
+                t_col=response_list[1]
+                c_col=response_list[2]
+                if t_col<1 or t_col>8 or c_col<1 or c_col>4:
+                    valid=False
+                else:
+                    valid=move_to_tableau(tableau,cell,t_col,c_col)
+                if valid==False:
+                    print("illegal move")
             elif r == 'c2f':
                 c_col=response_list[1]
                 f_col=response_list[2]
-                valid=move_to_foundation(cell,foundation,c_col,f_col)
+                if c_col<1 or c_col>4 or f_col<1 or f_col>4:
+                    valid=False
+                else:
+                    valid=move_to_foundation(cell,foundation,c_col,f_col)
                 if valid==False:
                     print("illegal move")                        
             elif r == 'q':
