@@ -32,29 +32,24 @@ def move_to_foundation(tableau,foundation,t_col,f_col):
     '''
     valid=False
 
-    t_col=int(t_col)-1
-    f_col=int(f_col)-1
+    t_col=t_col-1
+    f_col=f_col-1
     
     if len(tableau[t_col])!=0:
         tableau_card=tableau[t_col].pop()
-        print(tableau_card)
         tableau_rank=tableau_card.get_rank()
-        print(tableau_rank)
         tableau_suit=tableau_card.get_suit()
-        print(tableau_suit)
 
         if len(foundation[f_col])==0:
             if tableau_rank==1:
                 foundation[f_col].append(tableau_card)
+                valid=True
             else:
                 tableau[t_col].append(tableau_card)
         else:
             foundation_card=foundation[f_col][-1]
-            print(foundation_card)
             foundation_rank=foundation_card.get_rank()
-            print(foundation_rank)
             foundation_suit=foundation_card.get_suit()
-            print(foundation_suit)
 
             if foundation_rank==tableau_rank-1: #Iterating through rank
                 if foundation_suit==tableau_suit:
@@ -94,26 +89,20 @@ def move_to_tableau(tableau,cell,t_col,c_col):
     '''
     valid=False
     
-    t_col=int(t_col)-1
-    c_col=int(c_col)-1
+    t_col=t_col-1
+    c_col=c_col-1
     
     if len(cell[c_col])!=0:
         call_card=call[c_col].pop()
-        print(call_card)
         call_card_rank=call_card.get_rank()
-        print(call_card_rank)
         call_card_suite=call_card.get_suit()
-        print(call_card_suite)
 
         if len(tableau[t_col])==0:
             tableau[t_col].append(call_card)
         else:
             tableau_card=tableau[t_col][-1]
-            print(tableau_card)
             tableau_rank=tableau_card.get_rank()
-            print(tableau_rank)
             tableau_suit=tableau_card.get_suit()
-            print(tableau_suit)
 
             if tableau_rank==call_card_rank+1: #Iterating through rank
                 if (tableau_suit==1 or tableau_suit==4) and (call_card_suite==2 or call_card_suite==3):
@@ -126,7 +115,6 @@ def move_to_tableau(tableau,cell,t_col,c_col):
                     tableau[t_col].append(call_card)
             else:
                 tableau[t_col].append(call_card)
-    else:
         return valid
 
 
@@ -137,7 +125,7 @@ def is_winner(foundation):
     '''
     total_cards=0
     for i in foundation:
-        for j in foundation:
+        for j in i:
             total_cards+=1
     if total_cards==52:
         return True
@@ -154,26 +142,20 @@ def move_in_tableau(tableau,t_col_source,t_col_dest):
     '''
     valid=False
     
-    t_col_source=int(t_col_source)-1
-    t_col_dest=int(t_col_dest)-1
+    t_col_source=t_col_source-1
+    t_col_dest=t_col_dest-1
     
     if len(tableau[t_col_source])!=0:
         tableau_card1=tableau[t_col_source].pop()
-        print(tableau_card1)
         tableau_rank1=tableau_card1.get_rank()
-        print(tableau_rank1)
         tableau_suit1=tableau_card1.get_suit()
-        print(tableau_suit1)
 
         if len(tableau[t_col_dest])==0:
             tableau[t_col_dest].append(tableau_card1)
         else:
             tableau_card2=tableau[t_col_dest][-1]
-            print(tableau_card2)
             tableau_rank2=tableau_card2.get_rank()
-            print(tableau_rank2)
             tableau_suit2=tableau_card2.get_suit()
-            print(tableau_suit2)
 
             if tableau_rank2==tableau_rank1+1: #Iterating through rank
                 if (tableau_suit1==1 or tableau_suit1==4) and (tableau_suit2==2 or tableau_suit2==3):
@@ -186,8 +168,7 @@ def move_in_tableau(tableau,t_col_source,t_col_dest):
                     tableau[t_col_source].append(tableau_card1)
             else:
                 tableau[t_col_source].append(tableau_card1)
-    else:
-        return valid
+    return valid
     
 
 def print_game(foundation, tableau,cell):
@@ -215,7 +196,7 @@ def print_game(foundation, tableau,cell):
     for c in cell:
         # print if there is a card there; if not, exception prints spaces.
         try:
-            print('{:8s}'.format(c[0]), end = '')
+            print('{:>8s}'.format(c[0]), end = '')
         except IndexError:
             print('{:8s}'.format(''), end = '')
             
@@ -223,7 +204,7 @@ def print_game(foundation, tableau,cell):
     for stack in foundation:
         # print if there is a card there; if not, exception prints spaces.
         try:
-            print('{:8s}'.format(stack[-1]), end = '')
+            print('{:>8s}'.format(stack[-1]), end = '')
         except IndexError:
             print('{:8s}'.format(''), end = '')
 
@@ -304,60 +285,68 @@ def play():
         response = response.strip()
         response_list = response.split()
         if len(response_list) > 0:
-            r = response_list[0]
-            if r == 't2f':
-                t_col=response_list[1]#keep in mind what list we are in!
-                f_col=response_list[2]
-                if t_col<1 or t_col>8 or f_col<1 or f_col>4:
-                    valid=False
+            try:
+                r = response_list[0]
+                start=int(response_list[1])
+                end=int(response_list[2])
+                if r == 't2f':
+                    t_col=start#keep in mind what list we are in!
+                    f_col=end
+                    if t_col<1 or t_col>8 or f_col<1 or f_col>4:
+                        valid=False
+                    else:
+                        valid=move_to_foundation(tableau,foundation,t_col,f_col)
+                    if valid==False:
+                        print("illegal move")
+                elif r == 't2t':
+                    t_col_source=start
+                    t_col_dest=end
+                    if t_col_source<1 or t_col_source>8 or t_col_dest<1 or t_col_dest>8:
+                        valid=False
+                    else:
+                        valid=move_in_tableau(tableau,t_col_source,t_col_dest)
+                    if valid==False:
+                        print("illegal move")
+                elif r == 't2c':
+                    t_col=start
+                    c_col=end
+                    if t_col<1 or t_col>8 or c_col<1 or c_col>4:
+                        valid=False
+                    else:
+                        valid=move_to_cell(tableau,cell,t_col,c_col)
+                    if valid==False:
+                        print("illegal move")
+                elif r == 'c2t':
+                    t_col=start
+                    c_col=end
+                    if t_col<1 or t_col>8 or c_col<1 or c_col>4:
+                        valid=False
+                    else:
+                        valid=move_to_tableau(tableau,cell,t_col,c_col)
+                    if valid==False:
+                        print("illegal move")
+                elif r == 'c2f':
+                    c_col=start
+                    f_col=end
+                    if c_col<1 or c_col>4 or f_col<1 or f_col>4:
+                        valid=False
+                    else:
+                        valid=move_to_foundation(cell,foundation,c_col,f_col)
+                    if valid==False:
+                        print("illegal move")                        
+                elif r == 'q':
+                    break
+                elif r == 'h':
+                    show_help()
                 else:
-                    valid=move_to_foundation(tableau,foundation,t_col,f_col)
-                if valid==False:
-                    print("illegal move")
-            elif r == 't2t':
-                t_col_source=response_list[1]
-                t_col_dest=response_list[2]
-                if t_col_source<1 or t_col_source>8 or t_col_dest<1 or t_col_dest>8:
-                    valid=False
-                else:
-                    move_in_tableau(tableau,t_col_source,t_col_dest)
-                if valid==False:
-                    print("illegal move")
-            elif r == 't2c':
-                t_col=response_list[1]
-                c_col=response_list[2]
-                if t_col<1 or t_col>8 or c_col<1 or c_col>4:
-                    valid=False
-                else:
-                    valid=move_to_cell(tableau,cell,t_col,c_col)
-                if valid==False:
-                    print("illegal move")
-            elif r == 'c2t':
-                t_col=response_list[1]
-                c_col=response_list[2]
-                if t_col<1 or t_col>8 or c_col<1 or c_col>4:
-                    valid=False
-                else:
-                    valid=move_to_tableau(tableau,cell,t_col,c_col)
-                if valid==False:
-                    print("illegal move")
-            elif r == 'c2f':
-                c_col=response_list[1]
-                f_col=response_list[2]
-                if c_col<1 or c_col>4 or f_col<1 or f_col>4:
-                    valid=False
-                else:
-                    valid=move_to_foundation(cell,foundation,c_col,f_col)
-                if valid==False:
-                    print("illegal move")                        
-            elif r == 'q':
-                break
-            elif r == 'h':
-                show_help()
-            else:
-                print('Unknown command:',r)
+                    print('Unknown command:',r)
+            except:
+                print("invalid Input")
         else:
             print("Unknown Command:",response)
+        if is_winner(foundation):
+            print("WINNER!!!!!!!!!!")
+            break
     print('Thanks for playing')
 
 play()
