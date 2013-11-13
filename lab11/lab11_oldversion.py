@@ -51,11 +51,10 @@ class Circle(object):
         if self.fillcolor: pen.begin_fill() #?????????? this if doesn't do anything????
         pen.circle(self.radius)
         pen.end_fill()
-        pen.up()
   
 
 class Rectangular(object):
-    def __init__(self, bottomleft=(-20,-10), topright=(20,10),fillcolor="", pencolor="black"):
+    def __init__(self, bottomleft=(-20.0,-10.0), topright=(20.0,10.0),fillcolor="", pencolor="black"):
         """
         rectangle bottomleft point at(x,y) and topright point at(x,y)
         """
@@ -67,7 +66,7 @@ class Rectangular(object):
         return "Rectangle( Bottom-left-point:%s  Top-right-point%s )" % (self.bottomleft,self.topright)
 
 
-    def draw(self, pen):
+    def draw(self, pen):#draw starting from a center value???
         pen.goto(self.bottomleft)
         pen.seth(0)
         pen.color(self.pencolor, self.fillcolor)# sets pen color and fill color
@@ -96,91 +95,60 @@ class Triangle(object):
         self.point1=point1
         self.point2=point2
         self.point3=point3
-        self.fillcolor, self.pencolor = fillcolor, pencolor
         
+        self.fillcolor, self.pencolor = fillcolor, pencolor
     def __str__(self):
         return "Triangle( point1:%s  point2:%s  point3:%s)" % (self.point1,self.point2,self.point3)
-
-    def draw(self, pen):
-        pen.goto(self.point1)
+    
+    def draw(self, pen, center = (0.0,0.0)):#draw starting from a center value
+        pen.goto(center)#!
         pen.seth(0)
         pen.color(self.pencolor, self.fillcolor)# sets pen color and fill color
         pen.begin_fill()
         pen.down()#starts drawing
-        
-        pen.goto(self.point1)
-        pen.goto(self.point2)
-        pen.goto(self.point3)
-        
-        pen.goto(self.point1)#returns pen to original point
+        (x,y)=center#!
+        (a,b)=self.point1
+        a=a-x
+        b=b-y
+        pen.goto((a,b))
+        (c,d)=self.point2
+        c=c+x
+        d=d+y
+        pen.goto((c,d))
+        (e,f)=self.point3
+        e=e+x
+        f=f+y
+        pen.goto((e,f))
+        pen.goto((a,b))#returns pen to original point
         pen.end_fill()
         pen.up()
+        
+
         
 
 def main():
     pen = turtle.Turtle()
     
-    lines = [Line((0,-250),(0,250)), Line((-350,0), (350,0), "brown")]
-    print("Axis: Brown(Hor.) Black(Ver.)")
+    lines = [Line((0,-250),(0,250)), Line((-350,0), (350,0), "red")]
+
     for line in lines:
         print (line)
         line.draw(pen)
+    print
 
-    print()
-    print("Day time drawing: ")#left side of vertical
+    circle = Circle((15.0, 20.0), 60, 'blue', 'black')
+    circle.draw(pen)
+    print(circle)
 
-    sun_lines = [Line((-350,230),(-250,230)), Line((-300,280),(-300,180)) ,Line((-335,260),(-270,198)), Line((-335,200),(-270,268))]
-    for line in sun_lines:
-        print (line)
-        line.draw(pen)
-    
-    sun_circle = Circle((-300, 200), 30, 'yellow', 'black')
-    sun_circle.draw(pen)
-    print(sun_circle)
-
-    roof_triangle= Triangle((-100.0,80),(-65,135),(-30,80),'grey')
-    roof_triangle.draw(pen)
-    print(roof_triangle)
-
-    rectangle= Rectangular((-100,0),(-30,80),'darkgreen', 'black')
+    rectangle= Rectangular((50.0,40.0),(20.0,10.0),'red', 'red')
     rectangle.draw(pen)
     print(rectangle)
-
-    window1_rectangle= Rectangular((-90,50),(-70,60),'lightblue', 'black')
-    window1_rectangle.draw(pen)
-    print(window1_rectangle)
-
-    door_rectangle= Rectangular((-60,0),(-40,60),'grey', 'black')
-    door_rectangle.draw(pen)
-    print(door_rectangle)
-
-    doorhandle_circle = Circle((-45, 30), 3, 'blue', 'black')
-    doorhandle_circle.draw(pen)
-    print(doorhandle_circle)
-
-    tree_rectangle= Rectangular((-240,0),(-228,65),'brown', 'black')
-    tree_rectangle.draw(pen)
-    print(tree_rectangle)
-
-    tree1_circle = Circle((-247, 60), 30, 'darkgreen', 'black')
-    tree1_circle.draw(pen)
-    print(tree1_circle)
-
-    tree2_circle = Circle((-220, 60), 25, 'green', 'black')
-    tree2_circle.draw(pen)
-    print(tree2_circle)
-
-    tree3_circle = Circle((-230, 85), 22, 'lightgreen', 'black')
-    tree3_circle.draw(pen)
-    print(tree3_circle)
-
-    print()
-    print("Night time drawing: ")#Right side of vertical
-
     
-    
-    pen.hideturtle()   # uncomment to hide the turtle
-    #pen.reset()#uncomment to reset the screen when finished drawing (sets turtle to center of window)
+    triangle= Triangle((-50.0,0.0),(0.0,50.0),(50.0,0.0),'green')
+    triangle.draw(pen,(0.0,.0))
+    triangle.draw(pen,(0.0,-50.0))#broken triangle
+    print(triangle)
+    #pen.hideturtle()   # uncomment to hide the turtle
 
 
 main()
