@@ -115,17 +115,9 @@ class Triangle(object):
         pen.goto(self.point1)#returns pen to original point
         pen.end_fill()
         pen.up()
-        
 
-def main():
+def day():
     pen = turtle.Turtle()
-    
-    lines = [Line((0,-250),(0,250)), Line((-350,0), (350,0), "brown")]
-    print("Axis: Brown(Hor.) Black(Ver.)")
-    for line in lines:
-        print (line)
-        line.draw(pen)
-
     print()
     print("Day time drawing: ")#left side of vertical
 
@@ -142,7 +134,7 @@ def main():
     roof_triangle.draw(pen)
     print(roof_triangle)
 
-    rectangle= Rectangular((-100,0),(-30,80),'darkgreen', 'black')
+    rectangle= Rectangular((-100,0),(-30,80),'green', 'black')
     rectangle.draw(pen)
     print(rectangle)
 
@@ -173,13 +165,77 @@ def main():
     tree3_circle = Circle((-230, 85), 22, 'lightgreen', 'black')
     tree3_circle.draw(pen)
     print(tree3_circle)
+    pen.hideturtle()
 
+def night():
+    pen = turtle.Turtle()
     print()
     print("Night time drawing: ")#Right side of vertical
+    
+    moon_circle = Circle((300, 200), 30, 'darkblue', 'black')
+    moon_circle.draw(pen)
+    print(moon_circle)
 
+    darkroof_triangle= Triangle((100.0,80),(65,135),(30,80),'darkgrey')
+    darkroof_triangle.draw(pen)
+    print(darkroof_triangle)
+
+    darkrectangle= Rectangular((100,0),(30,80),'darkgreen', 'black')
+    darkrectangle.draw(pen)
+    print(darkrectangle)
+
+    darkwindow1_rectangle= Rectangular((90,50),(70,60),'yellow', 'black')
+    darkwindow1_rectangle.draw(pen)
+    print(darkwindow1_rectangle)
+
+    darkdoor_rectangle= Rectangular((60,0),(40,60),'darkgrey', 'black')
+    darkdoor_rectangle.draw(pen)
+    print(darkdoor_rectangle)
+
+    darkdoorhandle_circle = Circle((45, 30), 3, 'black', 'black')
+    darkdoorhandle_circle.draw(pen)
+    print(darkdoorhandle_circle)
+
+    darktree_rectangle= Rectangular((240,0),(228,65),'black', 'black')
+    darktree_rectangle.draw(pen)
+    print(darktree_rectangle)
+
+    darktree1_circle = Circle((247, 60), 30, 'darkgreen', 'black')
+    darktree1_circle.draw(pen)
+    print(darktree1_circle)
+
+    darktree2_circle = Circle((220, 60), 25, 'black', 'black')
+    darktree2_circle.draw(pen)
+    print(darktree2_circle)
+
+    darktree3_circle = Circle((230, 85), 22, 'darkgreen', 'black')
+    darktree3_circle.draw(pen)
+    print(darktree3_circle)
+    pen.hideturtle()
+        
+
+def main():
+    pen = turtle.Turtle()
+    pen.hideturtle()# uncomment to hide the turtle
+    lines = [Line((0,-250),(0,250)), Line((-350,0), (350,0), "brown")]
+    print("Axis: Brown(Hor.) Black(Ver.)")
+    for line in lines:
+        print (line)
+        line.draw(pen)
+
+    day()
+    night()
+
+    pen.color("black")
+    pen.up()
+    pen.goto(0,-200)
+    pen.down()
+    pen.write("Mirror               Universes", True, align="center", font=("Arial",15,"normal"))
+    pen.up()
+    pen.goto(0,-245)
+    pen.down()
+    pen.write("Light                 Dark", True, align="center", font=("Arial",15,"normal"))
     
-    
-    pen.hideturtle()   # uncomment to hide the turtle
     #pen.reset()#uncomment to reset the screen when finished drawing (sets turtle to center of window)
 
 
