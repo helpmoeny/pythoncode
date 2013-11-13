@@ -12,7 +12,7 @@ def setup():
     cell = [[],[],[],[]]  
     tableau = [[],[],[],[],[],[],[],[]]
     my_deck = cards.Deck()
-    #my_deck.shuffle()
+    my_deck.shuffle()
     for i in range(4):
         for k in range(7):
             tableau[i].append(my_deck.deal())
