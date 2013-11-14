@@ -15,6 +15,7 @@ class Line(object):
         self.tag = "Line"
 
     def __str__(self):
+        """When the class is called to print object, this function formats that print statement"""
         return "%s(%s,%s)" % (self.tag,self.beg,self.end)
 
     def draw(self,pen):
@@ -38,10 +39,14 @@ class Circle(object):
         self.fillcolor, self.pencolor = fillcolor, pencolor
 
     def __str__(self):
+        """When the class is called to print object, this function formats that print statement"""
         return "Circle( center:%s radius:%.1f )" % (self.center,self.radius)
 
 
     def draw(self, pen):
+        """
+        Draw the object Circle given the 3 coordinates.
+        """
         pen.seth(0)
         pen.color(self.pencolor, self.fillcolor)
         if pen.pos() != self.center:
@@ -64,10 +69,14 @@ class Rectangular(object):
         self.fillcolor, self.pencolor = fillcolor, pencolor
 
     def __str__(self):
+        """When the class is called to print object, this function formats that print statement"""
         return "Rectangle( Bottom-left-point:%s  Top-right-point%s )" % (self.bottomleft,self.topright)
 
 
     def draw(self, pen):
+        """
+        Draw the object rectangle given the 3 coordinates.
+        """
         pen.goto(self.bottomleft)
         pen.seth(0)
         pen.color(self.pencolor, self.fillcolor)# sets pen color and fill color
@@ -99,9 +108,13 @@ class Triangle(object):
         self.fillcolor, self.pencolor = fillcolor, pencolor
         
     def __str__(self):
+        """When the class is called to print object, this function formats that print statement"""
         return "Triangle( point1:%s  point2:%s  point3:%s)" % (self.point1,self.point2,self.point3)
 
     def draw(self, pen):
+        """
+        Draw the object triangle given the 3 coordinates.
+        """
         pen.goto(self.point1)
         pen.seth(0)
         pen.color(self.pencolor, self.fillcolor)# sets pen color and fill color
@@ -117,6 +130,9 @@ class Triangle(object):
         pen.up()
 
 def day():
+    """
+    Calls all the functions in and print statements to draw the day time figures.
+    """
     pen = turtle.Turtle()
     print()
     print("Day time drawing: ")#left side of vertical
@@ -168,6 +184,9 @@ def day():
     pen.hideturtle()
 
 def night():
+    """
+    Calls all the functions in and print statements to draw the night time figures.
+    """
     pen = turtle.Turtle()
     print()
     print("Night time drawing: ")#Right side of vertical
@@ -215,6 +234,7 @@ def night():
         
 
 def main():
+    """The function where all other functions are called into, than later main() is called"""
     pen = turtle.Turtle()
     pen.hideturtle()# uncomment to hide the turtle
     lines = [Line((0,-250),(0,250)), Line((-350,0), (350,0), "brown")]
@@ -239,4 +259,4 @@ def main():
     #pen.reset()#uncomment to reset the screen when finished drawing (sets turtle to center of window)
 
 
-main()
+main()#run the function main
