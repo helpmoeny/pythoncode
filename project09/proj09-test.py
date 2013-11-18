@@ -28,7 +28,7 @@ print('What is the perimeter of this triangle?')
 print(scalene_triangle.perimeter())
 
 print('What is the area of this triangle?')
-#print(scalene_triangle.area())
+print(scalene_triangle.area())
 
 print('What is the scale of this triangle with a factor of 1 then 2 then 5 and then 3/4')
 scalene_triangle.scale(1.0)

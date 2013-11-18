@@ -135,11 +135,8 @@ class Triangle( object ):
         """
         Return a float representing the Triangle's area.
         """
-        #sideA=float(self.__sideA)
-        #sideB=float(self.__sideB)
-        #sideC=float(self.__sideC)
         s=((self.__sideA+self.__sideB+self.__sideC)/2)
-        Area=math.sqrt(s(s-self.__sideA)(s-self.__sideB)(s-self.__sideC))
+        Area=math.sqrt(s*(s-self.__sideA)*(s-self.__sideB)*(s-self.__sideC))
         return Area
 
     def scale( self, factor=1.0 ):
