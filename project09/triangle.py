@@ -16,52 +16,43 @@ class Triangle( object ):
         self.__sideB = 0.0
         self.__sideC = 0.0
         self.__valid = False
-        sideA=self.__sideA
-        sideB=self.__sideB
-        sideC=self.__sideC
+        
+        self.__sideA=sideA
+        self.__sideB=sideB
+        self.__sideC=sideC
         
 
     def __validate( self ):
         #
         # Check the three sides to determine if a Triangle is valid.
         #
-
-        pass # REPLACE
-    
-    def __repr__( self ):
-        """
-        Return a string (the representation of a Triangle).
-        """
-        sideA=float(self.__sideA)
-        sideB=float(self.__sideB)
-        sideC=float(self.__sideC)
-        return("{}:.2f, {}.2f, {}.2f".format(sideA,sideB,sideC))
-
-    def __str__( self ):
-        """
-        Return a string (the representation of a Triangle).
-        """
-        #same as __repr__?
-        sideA=float(self.__sideA)
-        sideB=float(self.__sideB)
-        sideC=float(self.__sideC)
-        return("( {}, {}, {} )".format(sideA,sideB,sideC))
-
-    def is_valid( self ):
-        """
-        Return a Boolean (is the Triangle valid?).
-        """
-        valid=True
         sideA=float(self.__sideA)
         sideB=float(self.__sideB)
         sideC=float(self.__sideC)
         perimeter=sideA=sideB+sideC
         largest_side=max(sideA,sideB,sideC)
-        if perimeter<0 or perimeter==0:
-            valid=False
+        if perimeter<0:
+            self.__valid=False
             if perimeter-largest_side>largest_side:
-                valid=True
-        return valid
+                self.__valid=True
+    
+    def __repr__( self ):
+        """
+        Return a string (the representation of a Triangle).
+        """
+        return("{}, {}, {}".format(self.__sideA,self.__sideB,self.__sideC))
+
+    def __str__( self ):
+        """
+        Return a string (the representation of a Triangle).
+        """
+        return("( {}, {}, {} )".format(self.__sideA,self.__sideB,self.__sideC))
+
+    def is_valid( self ):
+        """
+        Return a Boolean (is the Triangle valid?).
+        """
+        return self.__valid
 
     def is_equilateral( self ):
         """
@@ -70,7 +61,7 @@ class Triangle( object ):
         #An equilateral triangle has three sides whose lengths are equal. 
         equilateral=False
         if self.__sideA==self.__sideB==self.__sideC:
-            equilater=True
+            equilateral=True
         return equilateral
 
     def is_isosceles( self ):
