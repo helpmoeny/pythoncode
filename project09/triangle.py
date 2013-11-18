@@ -16,11 +16,14 @@ class Triangle( object ):
         self.__sideB = 0.0
         self.__sideC = 0.0
         self.__valid = False
-        
-        self.__sideA=sideA
-        self.__sideB=sideB
-        self.__sideC=sideC
-        self.__validate()
+
+        if isinstance(self.__sideA, (int, float)):
+            if isinstance(self.__sideB, (int, float)):
+                if isinstance(self.__sideC, (int, float)):
+                    self.__sideA=sideA
+                    self.__sideB=sideB
+                    self.__sideC=sideC
+                    self.__valid = self.__validate()
         
 
     def __validate( self ):
@@ -38,7 +41,7 @@ class Triangle( object ):
         
         if perimeter>0:
             if (triangle[0]+triangle[1])>triangle[-1]:
-                self.__valid=True
+                return True
     
     def __repr__( self ):
         """
