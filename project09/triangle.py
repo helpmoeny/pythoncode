@@ -50,13 +50,13 @@ class Triangle( object ):
         """
         Return a string (the representation of a Triangle).
         """
-        return("{}, {}, {}".format(self.__sideA,self.__sideB,self.__sideC))
+        return("{}, {}, {}".format(self.__sideA,self.__sideB,self.__sideC,'.2f'))
 
     def __str__( self ):
         """
         Return a string (the representation of a Triangle).
         """
-        return("( {}, {}, {} )".format(self.__sideA,self.__sideB,self.__sideC))
+        return("( {}, {}, {} )".format(self.__sideA,self.__sideB,self.__sideC,'.2f'))
 
     def is_valid( self ):
         """
@@ -117,9 +117,7 @@ class Triangle( object ):
         angleA_degrees=angleA*(180/math.pi)
         angleB_degrees=angleB*(180/math.pi)
         angleC_degrees=angleC*(180/math.pi)
-        print(angleA_degrees)
-        print(angleB_degrees)
-        print(angleC_degrees)
+        return(angleA_degrees,angleB_degrees,angleC_degrees)
 
     def perimeter( self ):
         """
@@ -130,29 +128,30 @@ class Triangle( object ):
         sideC=float(self.__sideC)
         perimeter=sideA+sideB+sideC
         #if the triangle is valid, return perimeter
-        if self.is_valid==True:
+        if self.__valid==True:
             return perimeter
     
     def area( self ):
         """
         Return a float representing the Triangle's area.
         """
-        sideA=float(self.__sideA)
-        sideB=float(self.__sideB)
-        sideC=float(self.__sideC)
-        s=((sideA+sideB+sideC)/2)
-        Area=(s(s-sideA)(s-sideB)(s-sideC))**.5
+        #sideA=float(self.__sideA)
+        #sideB=float(self.__sideB)
+        #sideC=float(self.__sideC)
+        s=((self.__sideA+self.__sideB+self.__sideC)/2)
+        Area=math.sqrt(s(s-self.__sideA)(s-self.__sideB)(s-self.__sideC))
         return Area
 
     def scale( self, factor=1.0 ):
         """
         Scale all three of a Triangle's sides by the same factor.
         """
-        #if the triangle is valid, then...
-        if self.is_valid==True:
+        #if the triangle is valid and the scale factor is greater than 0, than change the sides accordingly
+        
+        if self.__valid==True:
             if factor>0:
-                sideA=float(self.__sideA)*factor
-                sideB=float(self.__sideB)*factor
-                sideC=float(self.__sideC)*factor
+                self.__sideA=self.__sideA*factor
+                self.__sideB=self.__sideB*factor
+                self.__sideC=self.__sideC*factor
 
 
