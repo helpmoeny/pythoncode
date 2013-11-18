@@ -37,11 +37,14 @@ class Triangle( object ):
         perimeter=sideA+sideB+sideC
         triangle=[sideA,sideB,sideC]
         triangle.sort()
-        print(triangle)
         
         if perimeter>0:
             if (triangle[0]+triangle[1])>triangle[-1]:
                 return True
+            else:
+                return False
+        else:
+            return False
     
     def __repr__( self ):
         """
@@ -105,8 +108,18 @@ class Triangle( object ):
         """
         Return a tuple containing the Triangle's three angles (in degrees) 
         """
-
-        pass # REPLACE
+        sideA=float(self.__sideA)
+        sideB=float(self.__sideB)
+        sideC=float(self.__sideC)
+        angleA=math.acos((-sideA**2+sideB**2+sideC**2)/(2*sideB*sideC))
+        angleB=math.acos((sideA**2-sideB**2+sideC**2)/(2*sideA*sideC))
+        angleC=math.acos((sideA**2+sideB**2-sideC**2)/(2*sideA*sideB))
+        angleA_degrees=angleA*(180/math.pi)
+        angleB_degrees=angleB*(180/math.pi)
+        angleC_degrees=angleC*(180/math.pi)
+        print(angleA_degrees)
+        print(angleB_degrees)
+        print(angleC_degrees)
 
     def perimeter( self ):
         """
