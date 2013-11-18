@@ -20,6 +20,7 @@ class Triangle( object ):
         self.__sideA=sideA
         self.__sideB=sideB
         self.__sideC=sideC
+        self.__validate()
         
 
     def __validate( self ):
@@ -29,11 +30,14 @@ class Triangle( object ):
         sideA=float(self.__sideA)
         sideB=float(self.__sideB)
         sideC=float(self.__sideC)
-        perimeter=sideA=sideB+sideC
-        largest_side=max(sideA,sideB,sideC)
-        if perimeter<0:
-            self.__valid=False
-            if perimeter-largest_side>largest_side:
+        
+        perimeter=sideA+sideB+sideC
+        triangle=[sideA,sideB,sideC]
+        triangle.sort()
+        print(triangle)
+        
+        if perimeter>0:
+            if (triangle[0]+triangle[1])>triangle[-1]:
                 self.__valid=True
     
     def __repr__( self ):
@@ -108,7 +112,7 @@ class Triangle( object ):
         sideA=float(self.__sideA)
         sideB=float(self.__sideB)
         sideC=float(self.__sideC)
-        perimeter=sideA=sideB+sideC
+        perimeter=sideA+sideB+sideC
         #if the triangle is valid, return perimeter
         if self.is_valid==True:
             return perimeter
@@ -134,5 +138,5 @@ class Triangle( object ):
                 sideA=float(self.__sideA)*factor
                 sideB=float(self.__sideB)*factor
                 sideC=float(self.__sideC)*factor
-                #what do we return?
+
 
