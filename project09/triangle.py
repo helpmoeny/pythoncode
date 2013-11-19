@@ -128,7 +128,9 @@ class Triangle( object ):
             angleB_degrees=angleB*(180/math.pi)
             angleC_degrees=angleC*(180/math.pi)
             angles=(angleA_degrees,angleB_degrees,angleC_degrees)
-            return angles
+        else:
+            angles=(None,None,None)
+        return angles
 
     def perimeter( self ):
         """
@@ -141,6 +143,8 @@ class Triangle( object ):
         #if the triangle is valid, return perimeter
         if self.__valid==True:
             return perimeter
+        else:
+            return 0
     
     def area( self ):
         """
@@ -153,6 +157,8 @@ class Triangle( object ):
             s=((sideA+sideB+sideC)/2)
             Area=math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC))
             return Area
+        else:
+            return 0
 
     def scale( self, factor=1.0 ):
         """
