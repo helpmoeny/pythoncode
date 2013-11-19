@@ -17,13 +17,22 @@ class Triangle( object ):
         self.__sideC = 0.0
         self.__valid = False
 
-        if isinstance(self.__sideA, (int, float)):
-            if isinstance(self.__sideB, (int, float)):
-                if isinstance(self.__sideC, (int, float)):
-                    self.__sideA=sideA
-                    self.__sideB=sideB
-                    self.__sideC=sideC
-                    self.__valid = self.__validate()
+        try:
+            if isinstance(self.__sideA, (int, float)):
+                if isinstance(self.__sideB, (int, float)):
+                    if isinstance(self.__sideC, (int, float)):
+                        self.__sideA=sideA
+                        self.__sideB=sideB
+                        self.__sideC=sideC
+                        self.__valid = self.__validate()
+        except:
+            sideA = 0.0
+            sideB = 0.0
+            sideC = 0.0
+            self.__sideA=sideA
+            self.__sideB=sideB
+            self.__sideC=sideC
+            self.__valid = self.__validate()
         
 
     def __validate( self ):
