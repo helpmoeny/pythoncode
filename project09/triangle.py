@@ -117,16 +117,18 @@ class Triangle( object ):
         """
         Return a tuple containing the Triangle's three angles (in degrees) 
         """
-        sideA=float(self.__sideA)
-        sideB=float(self.__sideB)
-        sideC=float(self.__sideC)
-        angleA=math.acos((-sideA**2+sideB**2+sideC**2)/(2*sideB*sideC))
-        angleB=math.acos((sideA**2-sideB**2+sideC**2)/(2*sideA*sideC))
-        angleC=math.acos((sideA**2+sideB**2-sideC**2)/(2*sideA*sideB))
-        angleA_degrees=angleA*(180/math.pi)
-        angleB_degrees=angleB*(180/math.pi)
-        angleC_degrees=angleC*(180/math.pi)
-        return(angleA_degrees,angleB_degrees,angleC_degrees)
+        if self.__valid==True:
+            sideA=float(self.__sideA)
+            sideB=float(self.__sideB)
+            sideC=float(self.__sideC)
+            angleA=math.acos((-sideA**2+sideB**2+sideC**2)/(2*sideB*sideC))
+            angleB=math.acos((sideA**2-sideB**2+sideC**2)/(2*sideA*sideC))
+            angleC=math.acos((sideA**2+sideB**2-sideC**2)/(2*sideA*sideB))
+            angleA_degrees=angleA*(180/math.pi)
+            angleB_degrees=angleB*(180/math.pi)
+            angleC_degrees=angleC*(180/math.pi)
+            angles=(angleA_degrees,angleB_degrees,angleC_degrees)
+            return angles
 
     def perimeter( self ):
         """
@@ -144,12 +146,13 @@ class Triangle( object ):
         """
         Return a float representing the Triangle's area.
         """
-        sideA=float(self.__sideA)
-        sideB=float(self.__sideB)
-        sideC=float(self.__sideC)
-        s=((sideA+sideB+sideC)/2)
-        Area=math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC))
-        return Area
+        if self.__valid==True:
+            sideA=float(self.__sideA)
+            sideB=float(self.__sideB)
+            sideC=float(self.__sideC)
+            s=((sideA+sideB+sideC)/2)
+            Area=math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC))
+            return Area
 
     def scale( self, factor=1.0 ):
         """
