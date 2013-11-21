@@ -3,7 +3,7 @@
 ## Class Vector
 ################################################################################
 
-
+import math
 class Vector( object ):
  
     def __init__( self, x=0, y=0 ):
@@ -29,11 +29,8 @@ class Vector( object ):
     def magnitude( self ):
         
         # calculates magnitude which is a scalar, returns a float
-
-        x = (self.__x + other.__x)
-        y = (self.__y + other.__y)
        
-        return Vector( x, y )
+        return math.hypot(self.__x,self.__y)
 
     def __add__( self, other ):
         
@@ -67,13 +64,13 @@ class Vector( object ):
         #Vector multiplication by another vector (dot product): if V=(x,y) and W=(a,b), then V*W = x*a + y*b, which is a scalar.
         
         if type( other ) != Vector:
-            x = (self.__x * other.__x)
-            y = (self.__y * other.__y)
-            return Vector( x, y )
+            x = (self.__x * other)
+            y = (self.__y * other)
+            return Vector( x, y )#returns new vector
             
         if type( other ) == Vector:
             value = (self.__x * other.__x) + (self.__y * other.__y)
-            return value
+            return value#returns scalar
         return none
         
 
@@ -83,11 +80,8 @@ class Vector( object ):
         if type( other ) != Vector:
             other = Vector( other )
         
-        if self.__x == other.__x and other.__y == self.__Y:
+        if self.__x == other.__x and other.__y == self.__y:
             valid=True
         else:
             valid=False
         return valid
-
-#arrow=Vector(0,0)
-#print(arrow.__add__(22))
