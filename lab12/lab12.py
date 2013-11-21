@@ -118,6 +118,14 @@ def main():
     print("")
 
     print("Does Vector1 = Vector2?")
-    vector1.__eq__(vector2)
+    print(vector1.__eq__(vector2))
+
+    print("")
+
+    print("Vector3= (2,2) and Vector4= (2,2)")
+    vector3=Vector(2,2)
+    vector4=Vector(2,2)
+    print("Does Vector3 = Vector4?")
+    print(vector3.__eq__(vector4))
 
 main()
