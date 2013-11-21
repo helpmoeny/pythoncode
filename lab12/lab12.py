@@ -85,3 +85,39 @@ class Vector( object ):
         else:
             valid=False
         return valid
+
+def main():
+    print("Vector1: (3,2.5)")
+    vector1=Vector(3,2.5)
+    print("Vector2: (4.5,6)")
+    vector2=Vector(4.5,6)
+
+    print("")
+
+    print("Vector1 + Vector2")
+    print(vector1.__add__(vector2))
+    print("Vector1 - Vector2")
+    print(vector1.__sub__(vector2))
+    print("Vector2 - Vector1")
+    print(vector2.__sub__(vector1))
+
+    print("")
+
+    print("Vector1 * Vector2")
+    print(vector1.__mul__(vector2))
+    print("Vector1 * 5")
+    print(vector1.__mul__(5))
+    print("Vector2 * 3.5")
+    print(vector2.__mul__(3.5))
+
+    print("")
+
+    print("Magnitude of Vector1: ",vector1.magnitude())
+    print("Magnitude of Vector2: ",vector2.magnitude())
+
+    print("")
+
+    print("Does Vector1 = Vector2?")
+    vector1.__eq__(vector2)
+
+main()
