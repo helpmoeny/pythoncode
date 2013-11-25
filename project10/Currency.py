@@ -22,16 +22,15 @@ class Currency( object ):
         """
         amount=self.__amount
         currencycode=self.__currencycode
-        return("{:.2f}, {}".format(amount,currencycode))
+        return("{}, {}".format(amount,currencycode))
 
     def __str__( self ):
         """
         Return a string (the representation of a Currency).
         """
-        #same as __repr__
         amount=self.__amount
         currencycode=self.__currencycode
-        return("Amount= {:.2f}, Currency: {}".format(amount,currencycode))
+        return("Amount= {}, Currency: {}".format(amount,currencycode))
     
     def convert_to(self,newcurrencycode):
         amount=self.__amount
@@ -56,34 +55,48 @@ class Currency( object ):
 
             old_amount=currency_lst[0]
             old_currency=currency_lst[1]
-
+            return Currency(new_amount,new_currency)
         else:
-            print("Incorrect Currency type")
-        return Currency(new_amount,new_currency)
+            print("Blank/Incorrect Currency type")
+        
 
     def __add__(self, other):
         if isinstance(other,Currency):
             #add the two currencies
-            other_currency = other.convert_to(self.__currencycode)
-            self.__amount=self.__amount+other.amount#wrong
+            other_currencyconverted = other.convert_to(self.__currencycode)
+            other_amount=self.__amount+other_currencyconverted.__amount
+            return Currency(other_amount,self.__currencycode)
+        
         if isinstance(other,int) or isinstance(other,float):
             new_amount=self.__amount+other
             return Currency(new_amount,self.__currencycode)
 
     def __radd__(self, other):
-        pass
+        # operands reversed as part of invocation
+        return Currency(other + self.__amount,self.__currencycode) 
 
     def __sub__(self, other):
         if isinstance(other,Currency):
-            #subtract the two currencies
+            other_currencyconverted = other.convert_to(self.__currencycode)
+            other_amount=self.__amount-other_currencyconverted.__amount
+            return Currency(other_amount,self.__currencycode)
+        
         if isinstance(other,int) or isinstance(other,float):
             new_amount=self.__amount-other
             return Currency(new_amount,self.__currencycode)
 
     def __rsub__(self, other):
-        pass
+        # operands reversed as part of invocation
+        return Currency(other-self.__amount,self.__currencycode)
 
-    
-
-usa=Currency(10,'USD')
-germany=usa.convert_to('EUR')
+    def __gt__(self, other):
+        # checks to see if the other object is greater than the current self currency amount
+        if isinstance(other,Currency):
+            other_currencyconverted = other.convert_to(self.__currencycode)
+            other_amount=other_currencyconverted.__amount
+            if self.__amount > other_amount:
+                return True
+            else:
+                return False
+        else:
+            print("object is not of type Currency")
