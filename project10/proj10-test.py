@@ -1,10 +1,11 @@
-import Currency
-
-usa=Currency.Currency(7.50,'USD')
+import currency
+print("USA")
+usa=currency.Currency(7.50,'USD')
 print(usa)
 print("")
 
-germany=Currency.Currency(2,'EUR')
+print("Germany")
+germany=currency.Currency(2,'EUR')
 print(germany)
 print("")
 

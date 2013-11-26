@@ -1,9 +1,9 @@
-import Currency
+import currency
 
 print("A bank account named 'account' has $1000, you may enter a deduction amount")
 print("(In the format 'XXX YYY', where xxx is the amount and yyy is the currencycode)")
 print("or type 'q' to quit")
-account=Currency.Currency(1000,'USD')
+account=currency.Currency(1000,'USD')
 while True:
     fo=input("expense amount: ")
     if fo=="q" or fo=="Q":
@@ -15,13 +15,13 @@ while True:
             amount=float(line_str[0])
             currencycode=line_str[1]
 
-            expense=Currency.Currency(amount,currencycode)
+            expense=currency.Currency(amount,currencycode)
             
             account=account-expense
         except:
             print("Incorrect inputs, try again...")
         
-        zero=Currency.Currency(0,'USD')
+        zero=currency.Currency(0,'USD')
         if zero>account:
             print("Overdrew account, quitting...")
             break
