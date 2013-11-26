@@ -6,8 +6,8 @@ class Currency( object ):
         self.__amount = 0
         self.__currencycode = ""
 
-        print(amount)
-        print(currencycode)
+        #print(amount) #print the current amount in object
+        #print(currencycode) #display
         if isinstance(amount,int) or isinstance(amount,float) and isinstance(currencycode,str):
             self.__amount=amount
             self.__currencycode=currencycode
@@ -22,7 +22,7 @@ class Currency( object ):
         """
         amount=self.__amount
         currencycode=self.__currencycode
-        return("{}, {}".format(amount,currencycode))
+        return("{:.2f}, {}".format(amount,currencycode))
 
     def __str__( self ):
         """
@@ -30,7 +30,7 @@ class Currency( object ):
         """
         amount=self.__amount
         currencycode=self.__currencycode
-        return("Amount= {}, Currency: {}".format(amount,currencycode))
+        return("Amount= {:.2f}, Currency: {}".format(amount,currencycode))
     
     def convert_to(self,newcurrencycode):
         amount=self.__amount
