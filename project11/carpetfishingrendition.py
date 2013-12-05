@@ -5,13 +5,15 @@ from random import choice
 from random import randrange
 
 class Fishing(object):
+    '''Creating fish type object'''
     def Fish():
         #creating multiple types of object fish types and returning one of them
         Fish = ['Whale Shark','Jack','Blacktip Shark','Tarpon','Roosterfish','Yellowfin Tuna','Peacock Bass','Cubera Snapper','Barracuda','Snapper','Wahoo','Blue Marlin','Black Marlin','Striped Marlin','Sailfish','Dorado','Amberjack','Bluefin','Bonito','Corvina','Red Stripe Rockfish','Sierra Mackered','Grouper','Hammerhead Shark','Pompano']
         return choice(Fish)
     
 
-class Carpet(object):   
+class Carpet(object):
+    '''Where the turtle drawing and calculations occur'''
     def Draw_square(x,y,length_str):
         t=turtle
         t.title("Carpet fishing") #displays given text in turtle window(bar)
@@ -99,6 +101,7 @@ class Carpet(object):
                 pass
 
 def main():
+    '''Running functions from class Fishing and Carpet, as well as obtaining user input'''
     grid_lst=Carpet.Draw_carpet()
     #print(grid_lst)#displays all the coordinate values that define the regions of grid squares
 
@@ -111,10 +114,10 @@ def main():
     y1=grid_lst[random_index][1]
     x2=grid_lst[random_index][2]
     y2=grid_lst[random_index][3]
-    print()
-    print("cheat activated, location of fish is between given coordinates")
-    print(x1,y1)
-    print(x2,y2)
+    #print()
+    #print("cheat activated, location of fish is between given coordinates")
+    #print(x1,y1)
+    #print(x2,y2)
 
     while True:
         x_cor=input("What x coordinate point would you like to place your hook? (Integer)")
