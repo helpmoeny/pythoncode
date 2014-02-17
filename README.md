@@ -1,5 +1,4 @@
-pythoncode cse 231 Msu
-c++11 code cse 232 Msu
+pythoncode and C++ code for projects and Labs at Msu
 ==========
 
 Code for python projects and labs msu
