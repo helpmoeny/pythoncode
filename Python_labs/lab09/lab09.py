@@ -13,9 +13,9 @@ def play_war(h1, h2):
         elif len(h1)==0:
             print("Player 2 Wins")
             break
-        #if input("Keep Going: (Q or q) to stop:") == 'q':
-            #print("Concede")
-            #break # break the loop manually
+        if input("Keep Going: (Q or q) to stop:") == 'q':
+            print("Concede")
+            break # break the loop manually
     
 def play_one(h1, h2):
     #get the top card from h1: top1
