@@ -1,6 +1,6 @@
 /* 
  * File:   proj04.cpp
- * Author: James Mitchell
+ * Author: 
  *
  * Created on February 14, 2014, 2:21 PM
  */
