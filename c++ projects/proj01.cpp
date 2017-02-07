@@ -1,6 +1,6 @@
 /* 
  * File:   proj01.cpp
- * Author: James M.
+ * Author: 
  *
  * Created on January 19, 2014, 10:48 PM
  */
