@@ -1,6 +1,6 @@
 /* 
  * File:   proj03.cpp
- * Author: James Mitchell
+ * Author: 
  *
  * Created on January 31, 2014, 3:41 PM
  */
